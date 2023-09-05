@@ -1,24 +1,54 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+const ws = new WebSocket('ws://localhost:8080');
+// Create a baseline temperature
+let baseTemperature;
+const resetBtn = document.querySelector('#reset');
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
 
-setupCounter(document.querySelector('#counter'))
+ws.onopen = function() {
+  console.log('Connected to the WebSocket server');
+};
+
+ws.onmessage = function(event) {
+  console.log('Received:', event.data);
+};
+
+ws.onclose = function() {
+  console.log('Disconnected from the WebSocket server');
+};
+
+// ws.onmessage = (event) => {
+//   document.getElementById('temperature').innerText = event.data;
+// };
+
+resetBtn.addEventListener('click', resetBaseTemperature);
+
+function resetBaseTemperature(event) {
+  event.preventDefault()
+  baseTemperature = undefined;
+  document.body.style.backgroundColor = '#a0d911'; 
+
+}
+
+
+ws.onmessage = (event) => {
+  
+  // Init the base temperature from first reading
+  if (baseTemperature === undefined) {
+    console.log('Setting base temperature:', event.data);
+    baseTemperature = parseFloat(event.data);
+    return;
+  }
+
+  document.getElementById('temperature').innerText = `Temperature: ${baseTemperature} °C`;
+
+  const currentTemperature = parseFloat(event.data);
+
+  if (currentTemperature > baseTemperature) {
+    document.body.style.backgroundColor = '#f5222d';
+  } else if (currentTemperature < baseTemperature) {
+    document.body.style.backgroundColor = '#13c2c2';
+  }
+
+  baseTemperature = currentTemperature;  //Update the base temperature
+};
+
