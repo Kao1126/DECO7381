@@ -31,17 +31,11 @@ void setup(void)
 }
 
 /*
- * Main function, get and show the temperature
+ * Main function, get the temperature data
  */
 void loop(void)
 {
-  // call sensors.requestTemperatures() to issue a global temperature
-  // request to all devices on the bus
-  // Serial.print("Requesting temperatures...");
   sensors.requestTemperatures(); // Send the command to get temperatures
-  // Serial.println("DONE");
-  // After we got the temperatures, we can print them here.
-  // We use the function ByIndex, and as an example get the temperature from the first sensor only.
   float tempC = sensors.getTempCByIndex(0);
 
   // Check if reading was successful

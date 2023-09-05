@@ -17,7 +17,6 @@ app.use(express.static('public'));
 // Connect to the port
 wss.on('connection', (ws) => {
   console.log('New client connected');
-
   port.on('data', (data) => {
     ws.send(data.toString());
   });
