@@ -6,7 +6,7 @@ const app = express();
 // Create a port
 // Configure the port to match the Arduino port, Current Mac is /dev/cu.usbserial-110, Windows is COM3
 const port = new SerialPort.SerialPort({
-  path: '/dev/cu.usbserial-110',
+  path: '/dev/cu.usbserial-10',
   baudRate: 9600,
 })
 // Create a WebSocket server
