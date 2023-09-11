@@ -12,21 +12,22 @@ body {
 }
 
 body.home {
-    background-image: url(/images/homepage/background.png);
+    background-image: url(../images/visualisation/Background.png);
 }
 
 body.explore {
-    background-image: url(/images/explore/background.png);
+    background-image: url(../images/explore/background.png);
 }
 
 body.data {
-    background-image: url(/images/visualisation/Background.png);
+    background-image: url(../images/visualisation/Background.png);
 }
 
 @font-face {
     font-family: 'P22MuschampPro';
-    src: url('/font/P22MuschampPro.ttf') format('truetype');
+    src: url('/frontend/font/P22MuschampPro.ttf') format('truetype');
   }
+
 
 @keyframes float {
     0% {

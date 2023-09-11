@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <title>Data_visualastion</title>
+</head>
+<body class="data">
+    <section class="data-sec">
+        <div class="left">
+            <img class='' src="images/explore/frame.png" alt="frame">
+        </div>
+        <div class="right">
+            <div class="svg-container svg5">
+                <img class="marker" src="images/visualisation/marker_bubble.png" alt="">
+                <h2>The Great Barrier Reef</h2>
+            </div>
+            <div class="svg-container svg1">
+                <img class="visual" src="images/visualisation/SVG/temperature data/temperature data.svg"/>
+                <div class="overlay-text tem"><%=temp%></div>
+            </div>
+            <div class="svg-container svg2">
+                <img class="visual" src="images/visualisation/SVG/pH data/ph.svg"/>
+                <div class="overlay-text ph"><%=ph%></div>
+            </div>
+            <div class="svg-container svg3">
+                <img class="loc" src="images/visualisation/SVG/salinity data/salinity.svg"/>
+                <div class="overlay-text sal"><%=salinity%>%</div>
+            </div>
+            <div class="svg-container svg4">
+                <img class="loc" src="images/visualisation/SVG/pollutants data/pullutatns.svg"/>
+                <div class="overlay-text pol">Medium</div>
+            </div>
+        </div>
+        <a href="/explore">
+            <img class="btn-back" src="images/visualisation/SVG/back button/back_button.svg" alt="">
+        </a>
+        <div class="animation">
+            <img class="display" src="images/visualisation/SVG/bubble_btright.svg" alt=""/>
+            <img class="fish" src="images/animation/nemo-fish.gif" alt="">
+        </div>
+    </section>
+</body>
+</html>
