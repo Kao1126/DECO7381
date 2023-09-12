@@ -12,7 +12,7 @@ body {
 }
 
 body.home {
-    background-image: url(../images/visualisation/Background.png);
+    background-image: url(../images/homepage/background.png);
 }
 
 body.explore {
@@ -27,7 +27,6 @@ body.data {
     font-family: 'P22MuschampPro';
     src: url('/frontend/font/P22MuschampPro.ttf') format('truetype');
   }
-
 
 @keyframes float {
     0% {
@@ -91,34 +90,48 @@ body.data {
     height: auto;
 }
 
-/* explore page */
-.explore-sec .left {
+.map-container {
     position: absolute;
-    top: 10%;
-    left: 8%;
-    overflow: hidden;
+    top: 11%;
+    left: 30%;
+    transform: translateX(-49.5%);
+    width: 70%;
+    aspect-ratio: 1.75;
+    max-width: 600px;
+    max-height: 600px;
+    margin: 0;
+    padding: 0;
+    
 }
 
-.explore-sec .left img {
-    width: 44vw;
-    height: auto;
-}
-
-.explore-sec .right {
+#map {
+    width: 580px;
+    height: 580px;
+    border-radius: 50%;
     position: relative;
-    right: 0;
 }
 
-.explore-sec .right img{
-    width: 12vw;
-    height: auto;
-}
-
-.explore-sec .svg-container {
+.mask {
+    background-image: url(/images/explore/frame.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 127%;
+    width: 127%;
     position: absolute;
+    top: 0%;
+    left: -18%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+
+.explore-loc .svg-container {
+    position: absolute;
+    width: 12vw;
 }
   
-.explore-sec .overlay-text {
+.explore-loc .overlay-text {
     width: 9vw;
     margin: 0 15px;
     position: absolute;
@@ -130,33 +143,34 @@ body.data {
     line-height: 1.2em;
 }
 
-.explore-sec .svg1 {
-    top: 90px;
-    right: 27%;
+.explore-loc .svg1 {
+    top: 13%;
+    right: 28%;
     animation: float 6s ease-in-out infinite;
 }
 
-.explore-sec .svg2 {
-    top: 30px;
+
+.explore-loc .svg2 {
+    top: 6%;
     right: 12%;
     animation: float 3s ease-in-out infinite;
 }
 
-.explore-sec .svg3 {
-    top: 210px;
+.explore-loc .svg3 {
+    top: 30%;
     right: 2%;
     animation: float 5s ease-in-out infinite;
 }
 
-.explore-sec .svg4 {
-    top: 420px;
-    right: 9%;
+.explore-loc .svg4 {
+    top: 55%;
+    right: 10%;
     animation: float 4s ease-in-out infinite;
 }
 
-.explore-sec .svg5 {
-    top: 290px;
-    right: 23%;
+.explore-loc .svg5 {
+    top: 43%;
+    right: 25%;
     animation: float 7s ease-in-out infinite;
 }
 
@@ -168,35 +182,29 @@ body.data {
 }
 
 /* data_visul */
-
+.data {
+    font-family: 'P22MuschampPro';
+}
+.data .map-container {
+    top: 4%;
+}
 .data-sec {
     color: white;
     font-size: 35px;
-}
-
-.data-sec .left {
-    position: absolute;
-    top: 13%;
-    left: 9%;
-}
-
-.data-sec .left img {
-    width: 44vw;
-    height: auto;
 }
 
 .data-sec .btn-back {
     width: 9vw;
     position: absolute;
     bottom: 0;
-    left: 4%;
+    left: 3%;
 }
 
 .data-sec .display {
     width: 23vw;
     position: absolute;
     bottom: 0;
-    right: 140px;
+    right: 10%;
 }
 
 .data-sec .fish {
@@ -206,23 +214,14 @@ body.data {
     right: -3%;
 }
 
-.data-sec .right {
-    position: relative;
-    right: 0;
-}
-
-.data-sec .right img:not(.marker){
-    width: 11vw;
-    height: auto;
-}
-
-.data-sec .marker {
-    width: 5vw;
-    height: auto;
-}
-
 .data-sec .svg-container {
     position: absolute;
+    width: 12vw;
+}
+
+.data-sec .svg-container img:not(.marker){
+    width: 11vw;
+    height: auto;
 }
 
 .data-sec .overlay-text {
@@ -231,10 +230,11 @@ body.data {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    font-size: 2rem;
 }
 
 .overlay-text.tem {
-    left: 40%;
+    left: 30%;
 }
 
 .overlay-text.ph {
@@ -246,40 +246,45 @@ body.data {
 }
 
 .data-sec .svg1 {
-    top: 260px;
-    right: 35%;
+    top: 40%;
+    right: 32%;
     animation: float 3s ease-in-out infinite;
 }
 
 .data-sec .svg2 {
-    top: 120px;
-    right: 26%;
+    top: 18%;
+    right: 25%;
     animation: float 4s ease-in-out infinite;
 }
 
 .data-sec .svg3 {
-    top: 170px;
+    top: 28%;
     right: 13%;
-    animation: float 2s ease-in-out infinite;
+    animation: float 5s ease-in-out infinite;
 }
 
 .data-sec .svg4 {
-    top: 120px;
+    top: 19%;
     right: 1%;
-    animation: float 5s ease-in-out infinite;
+    animation: float 2s ease-in-out infinite;
 }
 
 .data-sec .svg5 {
     display: flex;
     align-items: center;
-    top: 20px;
-    right: 10%;
+    top: 3%;
+    right:23%;
+}
+
+.data-sec .marker {
+    width: 5vw;
+    height: auto;
+    margin-right: 10px;
 }
 
 .data-sec h2 {
-    display: inline-block;
     color: aqua;
-    padding-left: 20px;
-    font-size: 40px;
+    white-space: nowrap;
+    margin-left: 5px;
 }
 
