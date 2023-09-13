@@ -29,7 +29,9 @@ app.get('/data_visual', (req, res) => {
   res.render('data_visual.ejs', {temp: temps[rand], ph: src.ph_value[ph_index], salinity: src.salinity[rand_sal]});
 })
 
-
+app.get('/interaction', (req, res) => {
+  res.render('interaction.ejs');
+})
 
 
 app.listen(8080, () => {

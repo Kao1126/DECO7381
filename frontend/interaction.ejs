@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/leaflet/leaflet.css" />
+    <script src="/leaflet/leaflet.js"></script>
+    <title>Echoes of the Ocean</title>
+</head>
+<body class="interaction">
+    <section class="inter-sec">
+         <!-- 幻燈片切換尚未加 -->
+        <section class="carousel">
+            <h3>The year of 2023</h3>
+            <article class="video">
+                <img src="/images/Scene/New version/Anime-I.gif" alt="">
+            </article>
+            <div class="progress">
+                <img src="/images/interaction/SVG/progress_car.svg" alt="">
+            </div>
+            <!-- 這三個按鈕會控制timeline跟影片 -->
+            <input class="species btn-control" type="button" value="species">
+            <input class="human btn-control" type="button" value="human">
+            <input class="other btn-control" type="button" value="other">
+        </section>
+         <!-- 幻燈片切換  -->
+        <a class="btn" href="data_visual.html">BACK</a>
+        <!-- park title -->
+        <div class="svg-container svg5">
+            <img class="marker" src="/images/visualisation/marker_bubble.png" alt="">
+            <h2>The Great Barrier Reef</h2>
+        </div>
+         <!-- park title  -->
+    </section>
+    <!-- marine info -->
+    <section class="info">
+        <img class="car" src="/images/interaction/PNG/car.png" alt="">
+        <div class="svg-container svg1">
+            <img class="visual" src="/images/visualisation/temperature.png"/>
+            <h3>temperature</h3>
+            <div class="overlay-text tem">26.3</div>
+        </div>
+        <div class="svg-container svg2">
+            <img class="visual" src="/images/visualisation/sin_bubble.png">
+            <h3>ph</h3>
+            <div class="overlay-text ph">8.2</div>
+        </div>
+        <div class="svg-container svg3">
+            <img class="visual" src="/images/visualisation/sin_bubble.png">
+            <h3>co2</h3>
+            <div class="overlay-text co2">1.5</div>
+        </div>
+    </section>
+    <!-- marine info -->
+    <!-- 地圖區塊 -->
+    <section id="openMap" class="map-container">
+        <div id="map"></div>
+        <div class="mask"></div>
+    </section>
+    <!-- 地圖區塊 -->
+    <!-- Trigger/Open The Modal -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">X</span>
+            <p>showing map......</p>
+            <!-- 地圖放這 -->
+        </div>
+    </div>
+
+</body>    
+ <script>
+     // Create a map centered on Australia
+     var map1 = L.map('map').setView([-16.000, 150.000], 4);
+ 
+     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+         attributionControl: false
+     }).addTo(map1);
+     // var marker = L.marker([-16.000, 150.000]).addTo(map);
+     var customIcon = L.icon({
+         iconUrl: '/images/visualisation/marker_bubble.png',
+         iconSize: [50, 50],
+         iconAnchor: [22, 10],
+     });
+     L.marker([-16.000, 150.000], { icon: customIcon }).addTo(map1);
+
+     // Get the modal
+    var modal = document.getElementById("myModal");
+    // Get the button that opens the modal
+    var btn = document.getElementById("openMap");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    var map2; // Declare the second map variable at the top level
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+        // Initialize the second map here, when the modal is displayed
+       
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+ </script>
+</html>
