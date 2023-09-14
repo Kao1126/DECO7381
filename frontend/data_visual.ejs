@@ -22,17 +22,17 @@
         <div class="svg-container svg1">
             <img class="visual" src="/images/visualisation/temperature.png"/>
             <h3>temperature</h3>
-            <div class="overlay-text tem">26.3</div>
+            <div class="overlay-text tem"><%=temp %></div>
         </div>
         <div class="svg-container svg2">
             <img class="visual" src="/images/visualisation/pH data.png"/>
             <h3>ph</h3>
-            <div class="overlay-text ph">8.2</div>
+            <div class="overlay-text ph"><%=ph %></div>
         </div>
         <div class="svg-container svg3">
             <img class="loc" src="/images/visualisation/salinity data.png"/>
             <h3>salinity</h3>
-            <div class="overlay-text sal">37%</div>
+            <div class="overlay-text sal"><%=salinity%>%</div>
         </div>
         <div class="svg-container svg4">
             <img class="loc" src="/images/visualisation/pollutants.png"/>
@@ -49,6 +49,7 @@
             <img class="fish" src="/images/animation/nemo-fish.gif" alt="">
         </div>
     </section>
+
 </body>
 <script>
     // Create a map centered on Australia
@@ -57,7 +58,8 @@
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attributionControl: false
     }).addTo(map);
-
+    var test = <%-JSON.stringify(data)%>
+    console.log(test)
     var geoJSONData = [
         {
             "type": "Feature",
@@ -108,7 +110,7 @@
     }
 
     // Create a GeoJSON layer and add it to the map
-    var geoJSONLayer = L.geoJSON(geoJSONData, {
+    var geoJSONLayer = L.geoJSON(test, {
         style: style,
         onEachFeature: onEachFeature
     }).addTo(map);

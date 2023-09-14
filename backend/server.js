@@ -1,9 +1,8 @@
 const express = require('express');
 const src = require('./src');
-const temp = require('./temperture');
-
-const app = express();
 const path = require("path");
+const app = express();
+
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
@@ -21,12 +20,11 @@ app.get('/explore', (req, res) => {
 })
 
 app.get('/data_visual', (req, res) => {
-  var temps = temp.all_SST;
+  var temps = src.all_SST;
   var rand = Math.floor(Math.random() * src.times);
   var rand_sal = Math.floor(Math.random() * src.salinity.length)
   var ph_index = rand%2;
-  
-  res.render('data_visual.ejs', {temp: temps[rand], ph: src.ph_value[ph_index], salinity: src.salinity[rand_sal]});
+  res.render('data_visual.ejs', {temp: temps[rand], ph: src.ph_value[ph_index], salinity: src.salinity[rand_sal], data: src.all_reef});
 })
 
 app.get('/interaction', (req, res) => {
