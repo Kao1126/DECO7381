@@ -1,6 +1,7 @@
 const express = require('express');
 const src = require('./src');
 const path = require("path");
+
 const app = express();
 
 
@@ -28,7 +29,7 @@ app.get('/data_visual', (req, res) => {
 })
 
 app.get('/interaction', (req, res) => {
-  res.render('interaction.ejs');
+  res.render('interaction.ejs', {all_reef: src.all_reef, reef_bleaching: src.reef_bleaching});
 })
 
 

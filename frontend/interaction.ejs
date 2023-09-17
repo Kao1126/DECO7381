@@ -15,7 +15,7 @@
         <section class="carousel">
             <h3>The year of 2023</h3>
             <article class="video">
-                <img src="/images/scene/Anime-I.gif" alt="">
+                <!-- <img src="/images/scene/Anime-I.gif" alt=""> -->
             </article>
             <div class="progress">
                 <img src="/images/interaction/SVG/progress_car.svg" alt="">
@@ -68,24 +68,30 @@
             <span class="close">X</span>
             <p>showing map......</p>
             <!-- 地圖放這 -->
+            <!-- <div id="map"></div> -->
         </div>
     </div>
 
 </body>    
  <script>
+
+    var reef = <%-JSON.stringify(all_reef)%>
+    var reef_bleaching = <%-JSON.stringify(reef_bleaching)%>
+
+
      // Create a map centered on Australia
-     var map1 = L.map('map').setView([-16.000, 150.000], 4);
+     var map = L.map('map').setView([-16.000, 150.000], 4);
  
      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
          attributionControl: false
-     }).addTo(map1);
+     }).addTo(map);
      // var marker = L.marker([-16.000, 150.000]).addTo(map);
      var customIcon = L.icon({
          iconUrl: '/images/visualisation/marker_bubble.png',
          iconSize: [50, 50],
          iconAnchor: [22, 10],
      });
-     L.marker([-16.000, 150.000], { icon: customIcon }).addTo(map1);
+     L.marker([-16.000, 150.000], { icon: customIcon }).addTo(map);
 
      // Get the modal
     var modal = document.getElementById("myModal");
@@ -93,6 +99,28 @@
     var btn = document.getElementById("openMap");
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
+
+    function style(feature) {
+        return {
+            radius: 8,
+            fillColor: feature.properties.color,
+            weight: 2,
+            opacity: 1,
+            color: 'pink',
+            fillOpacity: 0.7
+        };
+    }
+    function onEachFeature(feature, layer) {
+        if (feature.properties && feature.properties.name) {
+            layer.bindPopup('<div class="popup-content">' + feature.properties.name + '</div>');
+        }
+    }
+
+    var geoJSONLayer = L.geoJSON(reef, {
+        style: style,
+        onEachFeature: onEachFeature
+    }).addTo(map);
+
     var map2; // Declare the second map variable at the top level
 
     // When the user clicks the button, open the modal 
