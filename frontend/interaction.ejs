@@ -11,19 +11,76 @@
 </head>
 <body class="interaction">
     <section class="inter-sec">
-         <!-- 幻燈片切換尚未加 -->
-        <section class="carousel">
-            <h3>The year of 2023</h3>
-            <article class="video">
-                <!-- <img src="/images/scene/Anime-I.gif" alt=""> -->
-            </article>
-            <div class="progress">
-                <img src="/images/interaction/SVG/progress_car.svg" alt="">
-            </div>
-            <!-- 這三個按鈕會控制timeline跟影片 -->
-            <input class="species btn-control" type="button" value="species">
-            <input class="human btn-control" type="button" value="human">
-            <input class="other btn-control" type="button" value="other">
+        <div class="main-controls">
+            <input class="timeline" type="button" data-slider="0" value="2003">
+            <input class="timeline" type="button" data-slider="1" value="2023">
+            <input class="timeline" type="button" data-slider="2" value="2043">
+        </div>
+        <div class="progress">
+            <img src="/images/interaction/SVG/progress_car.svg" alt="">
+        </div>
+         <!-- 幻燈片切換尚 -->
+        <section class="carousel slider-group">
+            <h3 class="year">The year of 2003</h3>
+            <div class="slider-wrapper active" id="slider0">
+                    <div class="slider">
+                        <div class="slide">
+                            <img src="/images/scene/On-Scene-II/Fish1.gif">
+                        </div>
+                        <div class="slide">
+                            <img src="/images/scene/On-Scene-II/Human1.gif">
+                        </div>
+                        <div class="slide">
+                            <img src="/images/scene/On-Scene-II/Bird1.gif" ">
+                        </div>
+                        <div class="slide">
+                            <img src="/images/scene/Scene-II.gif" >
+                        </div>
+                        <div class="slide">
+                            <img src="/images/scene/Anime-I.gif" >
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-wrapper" id="slider1">
+                    <div class="slider">
+                        <div class="slide">
+                            <img src="/images/scene/On-Scene-III/Fish2.gif">
+                        </div>
+                        <div class="slide">
+                            <img src="/images/scene/On-Scene-III/Human2.gif">
+                        </div>
+                        <div class="slide">
+                            <img src="/images/scene/On-Scene-III/Bird2.gif" ">
+                        </div>
+                        <div class="slide">
+                            <img src="/images/scene/Scene-II.gif" >
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-wrapper" id="slider2">
+                    <div class="slider">
+                        <div class="slide">
+                            <img src="/images/scene/On-Scene-IV/Fish3.gif">
+                        </div>
+                        <div class="slide">
+                            <img src="/images/scene/On-Scene-IV/Human3.gif">
+                        </div>
+                        <div class="slide">
+                            <img src="/images/scene/On-Scene-IV/Bird3.gif" ">
+                        </div>
+                        <div class="slide">
+                            <img src="/images/scene/Scene-III.gif" >
+                        </div>
+                    </div>
+                </div>
+                <!-- 按鈕會控制t跟影片 -->
+                <div class="controls">
+                    <input class="market btn-control" type="button" value="market" data-target="0">
+                    <input class="human btn-control" type="button" value="human" data-target="1">
+                    <input class="species btn-control" type="button" value="species" data-target="2">
+                    <input class="ocean btn-control" type="button" value="ocean" data-target="3">
+                    <input style="display: none;" class="current btn-control" type="button" value="current" data-target="4">
+                </div>
         </section>
          <!-- 幻燈片切換  -->
         <a class="btn" href="/data_visual">BACK</a>
@@ -72,7 +129,7 @@
         </div>
     </div>
 
-</body>    
+</body>
  <script>
 
     var reef = <%-JSON.stringify(all_reef)%>
@@ -141,5 +198,63 @@
         }
     }
 
+
+    // mainControls control timeline
+    const mainControls = document.querySelector('.main-controls');
+    const sliderWrappers = document.querySelectorAll('.slider-wrapper');
+    const carIcon = document.querySelectorAll('.timeline');
+
+    // Function to set the last slide to the bottom of the given slider
+    function setLastSlideToBottom(slider) {
+        const slides = slider.querySelectorAll('.slide');
+        if (slides && slides.length > 0) {
+            const lastSlideOffsetTop = slides[slides.length - 1].offsetTop;
+            slider.scrollTop = lastSlideOffsetTop;
+        }
+    }
+
+    // default car icon when loading the page
+    document.querySelector('.timeline[data-slider="0"]').style.backgroundImage = 'url("/images/interaction/SVG/progress_car.svg")';
+    mainControls.addEventListener('click', function(e) {
+        if (e.target.tagName === 'INPUT' && e.target.type === 'button') {
+            const targetSlider = e.target.getAttribute('data-slider');
+            // Reset background image for all .timeline elements
+            carIcon.forEach(timeline => {
+                timeline.style.backgroundImage = '';
+            });
+            sliderWrappers.forEach((slider, idx) => {
+                if (idx == targetSlider) {
+                    slider.classList.add('active');
+                    let title = document.querySelector('.year');
+                    title.innerHTML = `The Year of ${e.target.value}`;
+                    // Set a background image to the clicked .timeline element
+                    e.target.style.backgroundImage = 'url("/images/interaction/SVG/progress_car.svg")';
+                
+                    setLastSlideToBottom(slider);
+                } else {
+                    slider.classList.remove('active');
+                }
+            });
+        }
+    });
+
+    // Ensure the first slider 
+    if (sliderWrappers.length > 0) {
+        setLastSlideToBottom(sliderWrappers[0]);
+    }
+
+    // shared btn for underwater to market
+    const globalControls = document.querySelector('.controls');
+    globalControls.addEventListener('click', function(e) {
+        if (e.target.tagName === 'INPUT' && e.target.type === 'button') {
+            const activeSliderWrapper = document.querySelector('.slider-wrapper.active');
+            const slides = activeSliderWrapper.querySelectorAll('.slide');
+            const targetOffsetTop = slides[e.target.getAttribute('data-target')].offsetTop;
+            activeSliderWrapper.scrollTo({
+                top: targetOffsetTop,
+                behavior: "smooth"
+            });
+        }
+    });
  </script>
 </html>

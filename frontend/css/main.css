@@ -192,7 +192,7 @@ body.interaction {
 
 .data .map-container {
     position: absolute;
-    top: 11%;
+    top: 5%;
     left: 30%;
     transform: translateX(-49.5%);
     width: 70%;
@@ -205,22 +205,22 @@ body.interaction {
 }
 
 .data #map {
-    width: 580px;
-    height: 580px;
+    width: 650px;
+    height: 650px;
     border-radius: 50%;
     position: relative;
 }
 
 .data .mask {
-    background-image: url(/images/explore/frame.png);
+    background-image: url(../images/interaction/PNG/frame.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    height: 127%;
-    width: 127%;
+    height: 111%;
+    width: 111%;
     position: absolute;
-    top: 0%;
-    left: -18%;
+    top: -5%;
+    left: -1%;
     pointer-events: none;
     z-index: 999;
 }
@@ -238,7 +238,7 @@ body.interaction {
 }
 
 .data-sec .display {
-    width: 23vw;
+    width: 25vw;
 }
 
 .link-display {
@@ -346,6 +346,43 @@ body.interaction {
 }
 
 /* interaction.html */
+.main-controls .timeline {
+    font-family: P22MuschampPro;
+    font-size: 28px;
+    position: absolute;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: aqua;
+    background: transparent;
+    z-index: 1;
+}
+
+
+.timeline:nth-of-type(1) {
+    top: 9%;
+    left: 9%;
+}
+
+
+.timeline:nth-of-type(2) {
+    top: 9%;
+    left: 20%;
+}
+
+.timeline:nth-of-type(3) {
+    top: 9%;
+    left: 30%;
+}
+
+.inter-sec .progress {
+    /* position: absolute;
+    top: 9%;
+    left: 9%;
+    width: 5vw; */
+}
+
+
 .interaction {
     position: relative;
 }
@@ -368,36 +405,46 @@ body.interaction {
     border-radius: 50%;
 }
 
-.inter-sec .video {
-    display: flex;
-    justify-content: center;
-    width: 56vw;
-    background-color: #c7c7c7;
-    padding:8px 10px;
-    border-radius: 10px;
-    position: absolute;
-    bottom: 3%;
-    left: 5%;
-    z-index: 1;
-}
-
-.inter-sec .video::after {
+.inter-sec .carousel::after {
     content: "";
     position: absolute;
-    bottom: -30px;
-    left: 30%;
+    bottom: 0;
+    left: 23%;
     width: 300px;
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
     border-bottom: 30px solid #524f4f;
+    z-index: 0;
+}
+.slider-wrapper {
+    overflow: hidden;
+    width: 58%;
+    height: 580px;
+    margin: 0 auto;
+    position: relative;
+    border: 10px solid #c7c7c7;
+    background-color: #c7c7c7;
+    border-radius: 8px;
+    position: absolute;
+    bottom: 3%;
+    left: 5%;
     z-index: 1;
+    display: none;
 }
 
-.video img {
+.slider-wrapper.active {
+    display: block;
+}
+
+.slide {
+    width: 100%;
+}
+
+.slide img {
     width: 100%;
     height: auto;
-    /* z-index: 2; */
+    display: block;
 }
 
 .interaction .map-container {
@@ -478,7 +525,12 @@ body.interaction {
     outline: none;
     cursor: pointer;
     background: linear-gradient(45deg, rgb(40, 34, 212), rgb(224, 90, 28));
-    z-index: 2;
+    z-index: 3;
+}
+
+.btn-control.ocean {
+    bottom: 5%;
+    left: 42%;
 }
 
 .btn-control.species {
@@ -491,18 +543,9 @@ body.interaction {
     left: 52%;
 }
 
-.btn-control.other {
+.btn-control.market {
     bottom: 5%;
     left: 57%;
-}
-
-
-
-.inter-sec .progress {
-    position: absolute;
-    top: 9%;
-    left: 4%;
-    width: 5vw;
 }
 
 .info .car {
