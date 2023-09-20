@@ -10,6 +10,14 @@ const ph_value = [8.2, 8.1]
 const salinity = [35.5, 35.6, 35.7, 35.8, 35.9, 36, 36.1, 36.2, 36.3, 36.4, 36.5]
 const all_reef = api.getData_file(reef_data_path)
 const reef_bleaching = api.getData_file(reef_bleaching_data_path)
+const reef_bleaching_data = []
+
+for(let j=1; j<5; j++){
+    let tmp = reef_bleaching.features.filter(function(i) {
+        return i.properties.bleachCat === j;
+      });
+    reef_bleaching_data.push(tmp)
+}
 
 const all_SST = []
 let data = api.getData_url(temperture_url);
@@ -22,4 +30,4 @@ data.then((record) => {
 
 
 
-module.exports = {ph_value, times, temperture_url, ph_value, salinity, all_reef, all_SST, reef_bleaching};
+module.exports = {ph_value, times, temperture_url, ph_value, salinity, all_reef, all_SST, reef_bleaching, reef_bleaching_data};

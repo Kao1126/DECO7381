@@ -29,7 +29,7 @@ app.get('/data_visual', (req, res) => {
 })
 
 app.get('/interaction', (req, res) => {
-  res.render('interaction.ejs', {all_reef: src.all_reef, reef_bleaching: src.reef_bleaching});
+  res.render('interaction.ejs', {all_reef: src.all_reef, reef_bleaching: src.reef_bleaching, reef_bleaching_data: src.reef_bleaching_data});
 })
 
 

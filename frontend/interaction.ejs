@@ -156,22 +156,32 @@
 
     var reef = <%-JSON.stringify(all_reef)%>
     var reef_bleaching = <%-JSON.stringify(reef_bleaching)%>
+    var all_bleaching = []
+    <% reef_bleaching_data.forEach((item, index) => { %>
+            all_bleaching.push(<%-JSON.stringify(item) %>)
+    <% }); %>
+    
+    var render_lists = {
+        '2003': [true, true, true, true],
+        '2023': [true, true, true, false],
+        '2043': [true, true, false, false],
+        '2063': [true, false, false, false],
+        '2083': [false, false, false, false]
+    }
+        
+    // Create a map centered on Australia
+    var map = L.map('map').setView([-16.000, 150.000], 4);
 
-
-     // Create a map centered on Australia
-     var map = L.map('map').setView([-16.000, 150.000], 4);
- 
-     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-         attributionControl: false
-     }).addTo(map);
-     // var marker = L.marker([-16.000, 150.000]).addTo(map);
-     var customIcon = L.icon({
-         iconUrl: '/images/visualisation/marker_bubble.png',
-         iconSize: [50, 50],
-         iconAnchor: [22, 10],
-     });
-     L.marker([-16.000, 150.000], { icon: customIcon }).addTo(map);
-
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attributionControl: false
+    }).addTo(map);
+    var customIcon = L.icon({
+        iconUrl: '/images/visualisation/marker_bubble.png',
+        iconSize: [50, 50],
+        iconAnchor: [22, 10],
+    });
+    L.marker([-16.000, 150.000], { icon: customIcon }).addTo(map);
+    
      // Get the modal
     var modal = document.getElementById("myModal");
     // Get the button that opens the modal
@@ -195,12 +205,60 @@
         }
     }
 
-    var geoJSONLayer = L.geoJSON(reef, {
-        style: style,
-        onEachFeature: onEachFeature
-    }).addTo(map);
+    var normal_style = {
+        radius: 1,
+        fillColor: "#ff7800",
+        color: "#ff7800",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+    };
+    var bleaching_style = {
+        radius: 1,
+        fillColor: "#ffffff",
+        color: "#ffffff",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+    };
 
-    var map2; // Declare the second map variable at the top level
+    function render_normal(data){
+        L.geoJSON(data, {
+        pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, normal_style);
+        }
+        }).addTo(map);
+    }
+
+    function render_bleaching(data){
+        L.geoJSON(data, {
+        pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, bleaching_style);
+        }
+        }).addTo(map);
+    }
+
+    function render_map(data, enable_list) {
+        for(let i=0; i<3; i++){
+            if(enable_list[i]===true){
+                render_normal(all_bleaching[i])
+            }else{
+                render_bleaching(all_bleaching[i])
+            }
+        }
+    }
+
+    // var render_list = [true, true, false, false]
+    // render_map(all_bleaching, render_list)
+
+
+
+
+    // for reef data
+    // var geoJSONLayer = L.geoJSON(reef, {
+    //     style: style,
+    //     onEachFeature: onEachFeature
+    // }).addTo(map);
 
     // When the user clicks the button, open the modal 
     btn.onclick = function() {
@@ -219,7 +277,6 @@
             modal.style.display = "none";
         }
     }
-
 
     // mainControls control timeline
     const mainControls = document.querySelector('.main-controls');
@@ -252,6 +309,10 @@
                     // Set a background image to the clicked .timeline element
                     e.target.style.backgroundImage = 'url("/images/interaction/SVG/progress_car.svg")';
                     setLastSlideToBottom(slider);
+                    // render map
+                    render_map(all_bleaching, render_lists[e.target.value])
+                    console.log(e.target.value)
+
                 } else {
                     slider.classList.remove('active');
                 }

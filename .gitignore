@@ -1,2 +1,3 @@
 *.vscode
 frontend/images/scene
+.DS_Store
