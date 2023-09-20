@@ -15,6 +15,8 @@
             <input class="timeline" type="button" data-slider="0" value="2003">
             <input class="timeline" type="button" data-slider="1" value="2023">
             <input class="timeline" type="button" data-slider="2" value="2043">
+            <input class="timeline" type="button" data-slider="3" value="2063">
+            <input class="timeline" type="button" data-slider="4" value="2083">
         </div>
         <div class="progress">
             <img src="/images/interaction/SVG/progress_car.svg" alt="">
@@ -23,6 +25,20 @@
         <section class="carousel slider-group">
             <h3 class="year">The year of 2003</h3>
             <div class="slider-wrapper active" id="slider0">
+                    <div class="slider">
+                        <div class="slide">
+                            <img src="/images/scene/Scene I.gif" >
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-wrapper" id="slider1">
+                    <div class="slider">
+                        <div class="slide">
+                            <img src="/images/scene/Scene I.gif" >
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-wrapper" id="slider2">
                     <div class="slider">
                         <div class="slide">
                             <img src="/images/scene/On-Scene-II/Fish1.gif">
@@ -41,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="slider-wrapper" id="slider1">
+                <div class="slider-wrapper" id="slider3">
                     <div class="slider">
                         <div class="slide">
                             <img src="/images/scene/On-Scene-III/Fish2.gif">
@@ -53,11 +69,14 @@
                             <img src="/images/scene/On-Scene-III/Bird2.gif" ">
                         </div>
                         <div class="slide">
-                            <img src="/images/scene/Scene-II.gif" >
+                            <img src="/images/scene/Scene-III.gif" >
+                        </div>
+                        <div class="slide">
+                            <img src="/images/scene/Anime-II.gif" >
                         </div>
                     </div>
                 </div>
-                <div class="slider-wrapper" id="slider2">
+                <div class="slider-wrapper" id="slider4">
                     <div class="slider">
                         <div class="slide">
                             <img src="/images/scene/On-Scene-IV/Fish3.gif">
@@ -69,7 +88,10 @@
                             <img src="/images/scene/On-Scene-IV/Bird3.gif" ">
                         </div>
                         <div class="slide">
-                            <img src="/images/scene/Scene-III.gif" >
+                            <img src="/images/scene/Scene-IV.gif" >
+                        </div>
+                        <div class="slide">
+                            <img src="/images/scene/Anime-III.gif" >
                         </div>
                     </div>
                 </div>
@@ -229,7 +251,6 @@
                     title.innerHTML = `The Year of ${e.target.value}`;
                     // Set a background image to the clicked .timeline element
                     e.target.style.backgroundImage = 'url("/images/interaction/SVG/progress_car.svg")';
-                
                     setLastSlideToBottom(slider);
                 } else {
                     slider.classList.remove('active');
