@@ -162,15 +162,15 @@
     <% }); %>
     
     var render_lists = {
-        '2003': [true, true, true, true],
-        '2023': [true, true, true, false],
-        '2043': [true, true, false, false],
-        '2063': [true, false, false, false],
-        '2083': [false, false, false, false]
+        '2003': [1, 1, 1, 1],
+        '2023': [2, 1, 1, 1],
+        '2043': [3, 2, 1, 1],
+        '2063': [3, 3, 2, 1],
+        '2083': [3, 3, 3, 2]
     }
         
     // Create a map centered on Australia
-    var map = L.map('map').setView([-16.000, 150.000], 4);
+    var map = L.map('map').setView([-16.000, 150.000], 5);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attributionControl: false
@@ -204,23 +204,14 @@
             layer.bindPopup('<div class="popup-content">' + feature.properties.name + '</div>');
         }
     }
-
-    var normal_style = {
-        radius: 1,
-        fillColor: "#ff7800",
-        color: "#ff7800",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8
-    };
-    var bleaching_style = {
-        radius: 1,
-        fillColor: "#ffffff",
-        color: "#ffffff",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8
-    };
+    
+    function render_reef(data, style){
+        L.geoJSON(data, {
+        pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, style);
+        }
+        }).addTo(map);
+    }
 
     function render_normal(data){
         L.geoJSON(data, {
@@ -240,10 +231,14 @@
 
     function render_map(data, enable_list) {
         for(let i=0; i<3; i++){
-            if(enable_list[i]===true){
-                render_normal(all_bleaching[i])
+            if(enable_list[i]===1){
+                render_reef(all_bleaching[i], normal_style)
+            }
+            if(enable_list[i]===2){
+                render_reef(all_bleaching[i], moderate_style)
+
             }else{
-                render_bleaching(all_bleaching[i])
+                render_reef(all_bleaching[i], bleaching_style)
             }
         }
     }
