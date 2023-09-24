@@ -12,19 +12,26 @@
 <body class="interaction">
     <section class="inter-sec">
         <div class="main-controls">
-            <input class="timeline" type="button" data-slider="0" value="2003">
-            <input class="timeline" type="button" data-slider="1" value="2023">
-            <input class="timeline" type="button" data-slider="2" value="2043">
-            <input class="timeline" type="button" data-slider="3" value="2063">
-            <input class="timeline" type="button" data-slider="4" value="2083">
+            <!-- <input class="timeline" type="button" data-slider="0" value="2003"> -->
+            <input class="timeline" type="button" data-slider="0" value="2023">
+            <input class="timeline" type="button" data-slider="1" value="2043">
+            <input class="timeline" type="button" data-slider="2" value="2063">
+            <input class="timeline" type="button" data-slider="3" value="2083">
         </div>
         <div class="progress">
             <img src="/images/interaction/SVG/progress_car.svg" alt="">
         </div>
          <!-- 幻燈片切換尚 -->
         <section class="carousel slider-group">
-            <h3 class="year">The year of 2003</h3>
-            <div class="slider-wrapper active" id="slider0">
+            <h3 class="year">The year of 2023</h3>
+                <!-- <div class="slider-wrapper active" id="slider0">
+                    <div class="slider">
+                        <div class="slide">
+                            <img src="/images/scene/Scene I.gif" >
+                        </div>
+                    </div>
+                </div> -->
+                <div class="slider-wrapper active" id="slider0">
                     <div class="slider">
                         <div class="slide">
                             <img src="/images/scene/Scene I.gif" >
@@ -32,13 +39,6 @@
                     </div>
                 </div>
                 <div class="slider-wrapper" id="slider1">
-                    <div class="slider">
-                        <div class="slide">
-                            <img src="/images/scene/Scene I.gif" >
-                        </div>
-                    </div>
-                </div>
-                <div class="slider-wrapper" id="slider2">
                     <div class="slider">
                         <div class="slide">
                             <img src="/images/scene/On-Scene-II/Fish1.gif">
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="slider-wrapper" id="slider3">
+                <div class="slider-wrapper" id="slider2">
                     <div class="slider">
                         <div class="slide">
                             <img src="/images/scene/On-Scene-III/Fish2.gif">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="slider-wrapper" id="slider4">
+                <div class="slider-wrapper" id="slider3">
                     <div class="slider">
                         <div class="slide">
                             <img src="/images/scene/On-Scene-IV/Fish3.gif">
@@ -144,10 +144,86 @@
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
-            <span class="close">X</span>
-            <p>showing map......</p>
-            <!-- 地圖放這 -->
-            <!-- <div id="map"></div> -->
+            <span class="close">
+                <img src="/images/map/close.png" alt="">
+            </span>
+            <h2>Unveriling El Nino's Mysteries</h2>
+            <div class="status">
+                <div class="item ocean-temperature">
+                    <img src="images/map/animation/species-default.png" data-still="images/map/animation//species-default.png" data-animate="images/map/earth.png" alt="">
+                    <h3>Ocean temperature</h3>
+                </div>
+                <div class="item animal-migration">
+                    <img src="images/map/animation/species-default.png" data-still="images/map/animation//species-default.png" data-animate="images/map/animation/species-I.gif" alt="">
+                    <h3>Mirine Animal Migration</h3>
+                </div>
+                <div class="item corall-bleaching">
+                    <img src="images/map/earth.png" data-still="images/map/earth.png" data-animate="images/map/earth.png" alt="">
+                    <h3>Coral Bleaching</h3>
+                </div>
+            </div>
+            <button onclick="toggleMapGifs()">Toggle GIFs</button>
+            <div class="figure">
+                <div class="health">
+                    <img class="health-img" src="images/map/health.png" alt="">
+                </div>
+                <div class="species">
+                    <div class="num dophin-num">
+                        <img src="images/map/nemo.png" alt="">
+                        <div class="block">
+                            <h4>Doplin</h4>
+                            <h3 class="count">10326</h3>
+                        </div>
+                    </div>
+                    <div class="num whales_num">
+                        <img src="images/map/whales.png" alt="">
+                        <div class="block">
+                            <h4>Whales</h4>
+                            <h3 class="count">13481</h3>
+                        </div>
+                    </div>
+                    <div class="num dugong-num">
+                        <img src="images/map/dogong.png" alt="">
+                        <div class="block">
+                            <h4>Dugong</h4>
+                            <h3 class="count">4865</h3>
+                        </div>
+                    </div>
+                    <div class="num clownfish-num">
+                        <img src="images/map/nemo.png" alt="">
+                        <div class="block">
+                            <h4>Clownfish</h4>
+                            <h3 class="count">16962</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="bleaching">
+                    <div class="coral">
+                        <img src="images/map/bleaching-none.png" alt="">
+                        <div class="block">
+                            <h4>No Bleaching</h4>
+                        </div>
+                    </div>
+                    <div class="coral">
+                        <img src="images/map/bleaching.png" alt="">
+                        <div class="block">
+                            <h4>Bleaching</h4>
+                        </div>
+                    </div>
+                    <div class="coral">
+                        <img src="images/map/mederate.png" alt="">
+                        <div class="block">
+                            <h4>Moderate</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- give the hint when open modal -->
+    <div id="hintMask" class="hint-mask hidden">
+        <div class="hint-content">
+            Please blow into the device
         </div>
     </div>
 
@@ -182,12 +258,6 @@
     });
     L.marker([-16.000, 150.000], { icon: customIcon }).addTo(map);
     
-     // Get the modal
-    var modal = document.getElementById("myModal");
-    // Get the button that opens the modal
-    var btn = document.getElementById("openMap");
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
 
     function style(feature) {
         return {
@@ -282,11 +352,18 @@
     //     onEachFeature: onEachFeature
     // }).addTo(map);
 
+
+    // Get the modal
+      var modal = document.getElementById("myModal");
+    // Get the button that opens the modal
+    var btn = document.getElementById("openMap");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
     // When the user clicks the button, open the modal 
     btn.onclick = function() {
         modal.style.display = "block";
-        // Initialize the second map here, when the modal is displayed
-       
+        document.getElementById('hintMask').classList.remove('hidden');     
     }
 
     // When the user clicks on <span> (x), close the modal
@@ -319,10 +396,22 @@
     mainControls.addEventListener('click', function(e) {
         if (e.target.tagName === 'INPUT' && e.target.type === 'button') {
             const targetSlider = e.target.getAttribute('data-slider');
-            // Reset background image for all .timeline elements
+            
+            // get year and alter context in the modal
+            const year = e.target.value.toString();
+            updateModalContent(year);
+             // Reset background image for all .timeline elements
             carIcon.forEach(timeline => {
                 timeline.style.backgroundImage = '';
             });
+
+            // default gif to still status
+            const items = document.querySelectorAll('.item img');
+            items.forEach(img => {
+                const still = img.getAttribute('data-still');
+                img.src = still;
+            });
+
             sliderWrappers.forEach((slider, idx) => {
                 if (idx == targetSlider) {
                     slider.classList.add('active');
@@ -360,5 +449,99 @@
             });
         }
     });
+
+    const contents = {
+        '2023': {
+            oceanStill: 'images/map/animation/species-default.png',
+            oceanAnimate: 'images/map/animation/species-default.png',
+            migrationStill: 'images/map/animation/species-default.png',
+            migrationAnimate: 'images/map/animation/species-default.png',
+            coralStill: 'images/map/earth.png',
+            coralAnimate: 'images/map/earth.png',
+            healthImage: 'images/map/health.png',
+            doplinCount: '10500',
+            whalesCount: '14000',
+            dugongCount: '5000',
+            clownfishCount: '17000',
+        },
+        '2043': {
+            oceanStill: 'images/map/animation/species-default.png',
+            oceanAnimate: 'images/map/animation/species-I.gif',
+            migrationStill: 'images/map/animation/species-default.png',
+            migrationAnimate: 'images/map/animation/species-I.gif',
+            coralStill: 'images/map/earth.png',
+            coralAnimate: 'images/map/earth.png',
+            healthImage: 'images/map/health.png',
+            doplinCount: '7500',
+            whalesCount: '13000',
+            dugongCount: '4000',
+            clownfishCount: '14000',
+        },
+        '2063': {
+            oceanStill: 'images/map/animation/species-I.gif',
+            oceanAnimate: 'images/map/animation/species-II.gif',
+            migrationStill: 'images/map/animation/species-I.gif',
+            migrationAnimate: 'images/map/animation/species-II.gif',
+            coralStill: 'images/map/earth.png',
+            coralAnimate: 'images/map/earth.png',
+            healthImage: 'images/map/health.png',
+            doplinCount: '6500',
+            whalesCount: '11000',
+            dugongCount: '37000',
+            clownfishCount: '10000',
+        },
+        '2083': {
+            oceanStill: 'images/map/animation/species-II.gif',
+            oceanAnimate: 'images/map/animation/species-III.gif',
+            migrationStill: 'images/map/animation/species-II.gif',
+            migrationAnimate: 'images/map/animation/species-III.gif',
+            coralStill: 'images/map/earth.png',
+            coralAnimate: 'images/map/earth.png',
+            healthImage: 'images/map/health.png',
+            doplinCount: '500',
+            whalesCount: '8000',
+            dugongCount: '2000',
+            clownfishCount: '7000',
+        },
+    };
+
+
+    function updateModalContent(year) {
+        const content = contents[year];
+        if (!content) {
+            console.error(`No content found for year ${year}`);
+            return;
+        }
+        document.querySelector('.ocean-temperature img').src = content.oceanStill;
+        document.querySelector('.ocean-temperature img').dataset.animate = content.oceanAnimate;
+        document.querySelector('.animal-migration img').src = content.migrationStill;
+        document.querySelector('.animal-migration img').dataset.animate = content.migrationAnimate;
+        document.querySelector('.corall-bleaching img').src = content.coralStill;
+        document.querySelector('.corall-bleaching img').dataset.animate = content.coralAnimate;
+        document.querySelector('.health-img').src = content.healthImage;
+        document.querySelector('.dophin-num .count').textContent = content.doplinCount;
+        document.querySelector('.whales_num .count').textContent = content.whalesCount;
+        document.querySelector('.dugong-num .count').textContent = content.dugongCount;
+        document.querySelector('.clownfish-num .count').textContent = content.clownfishCount;
+    }
+
+    function toggleMapGifs() {
+    const items = document.querySelectorAll('.item img');
+    
+    items.forEach(img => {
+        const still = img.getAttribute('data-still');
+        const animate = img.getAttribute('data-animate');
+        if (img.src === still) {
+            document.getElementById('hintMask').classList.remove('hidden');
+        } else {
+            document.getElementById('hintMask').classList.add('hidden');
+        }
+        if (img.src.endsWith(still)) {
+            img.src = animate;
+        } else {
+            img.src = still;
+        }
+    });
+}
  </script>
 </html>
