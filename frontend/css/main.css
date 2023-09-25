@@ -106,6 +106,14 @@ body.interaction {
     height: auto;
 }
 
+.home-sec a img {
+    transition: filter 0.3s ease;
+}
+  
+.home-sec a:hover img {
+    filter: drop-shadow(0 0 30px hsla(168,90%,45%,1));
+}
+    
 .explore .map-container {
     position: absolute;
     top: 11%;
@@ -189,6 +197,12 @@ body.interaction {
     animation: float 7s ease-in-out infinite;
 }
 
+.explore-loc .svg5:hover {
+    /* border-radius: 50%;
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff; */
+    filter: drop-shadow(0 0 20px rgb(232, 213, 148));
+}
+
 .explore .btn {
     width: 10vw;
     position: absolute;
@@ -248,8 +262,30 @@ body.interaction {
     left: 4%;
 }
 
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
 .data-sec .display {
     width: 24vw;
+    transition: filter 0.3s ease-in-out;
+
+}
+
+.data-sec .display:hover {
+    filter: drop-shadow(0 0 30px hsla(168,90%,45%,1));
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
 .data-sec .base {
