@@ -1,3 +1,5 @@
 *.vscode
 frontend/images/scene
+frontend/images/map/Number
+frontend/images/map/Species
 .DS_Store

@@ -150,26 +150,27 @@
             <h2>Unveriling El Nino's Mysteries</h2>
             <div class="status">
                 <div class="item ocean-temperature">
-                    <img src="images/map/animation/species-default.png" data-still="images/map/animation//species-default.png" data-animate="images/map/earth.png" alt="">
+                    <img src="images/map/Species/2023/species-I.png" data-still="images/map/Species/2023/species-I.png" data-animate="images/map/Species/2023/species-I-blow.gif" alt="">
                     <h3>Ocean temperature</h3>
                 </div>
                 <div class="item animal-migration">
-                    <img src="images/map/animation/species-default.png" data-still="images/map/animation//species-default.png" data-animate="images/map/animation/species-I.gif" alt="">
-                    <h3>Mirine Animal Migration</h3>
+                    <img src="images/map/Species/2023/species-I.png" data-still="images/map/Species/2023/species-I.png" data-animate="images/map/Species/2023/species-I-blow.gif" alt="">
+                    <h3>Marine Animal Migration</h3>
                 </div>
                 <div class="item corall-bleaching">
                     <img src="images/map/earth.png" data-still="images/map/earth.png" data-animate="images/map/earth.png" alt="">
                     <h3>Coral Bleaching</h3>
                 </div>
             </div>
-            <button onclick="toggleMapGifs()">Toggle GIFs</button>
+            <button id="elNino">El Nino</button>
+            <button id="togg-gif" onclick="toggleMapGifs()">Toggle GIFs</button>
             <div class="figure">
                 <div class="health">
                     <img class="health-img" src="images/map/health.png" alt="">
                 </div>
                 <div class="species">
                     <div class="num dophin-num">
-                        <img src="images/map/nemo.png" alt="">
+                        <img src="images/map/dolphin.png" alt="">
                         <div class="block">
                             <h4>Doplin</h4>
                             <h3 class="count">10326</h3>
@@ -354,7 +355,7 @@
 
 
     // Get the modal
-      var modal = document.getElementById("myModal");
+    var modal = document.getElementById("myModal");
     // Get the button that opens the modal
     var btn = document.getElementById("openMap");
     // Get the <span> element that closes the modal
@@ -363,7 +364,6 @@
     // When the user clicks the button, open the modal 
     btn.onclick = function() {
         modal.style.display = "block";
-        document.getElementById('hintMask').classList.remove('hidden');     
     }
 
     // When the user clicks on <span> (x), close the modal
@@ -454,8 +454,8 @@
         '2023': {
             oceanStill: 'images/map/animation/species-default.png',
             oceanAnimate: 'images/map/animation/species-default.png',
-            migrationStill: 'images/map/animation/species-default.png',
-            migrationAnimate: 'images/map/animation/species-default.png',
+            migrationStill: 'images/map/Species/2023/species-I.png',
+            migrationAnimate: 'images/map/Species/2023/species-I-blow.gif',
             coralStill: 'images/map/earth.png',
             coralAnimate: 'images/map/earth.png',
             healthImage: 'images/map/health.png',
@@ -463,12 +463,13 @@
             whalesCount: '14000',
             dugongCount: '5000',
             clownfishCount: '17000',
+            
         },
         '2043': {
             oceanStill: 'images/map/animation/species-default.png',
             oceanAnimate: 'images/map/animation/species-I.gif',
-            migrationStill: 'images/map/animation/species-default.png',
-            migrationAnimate: 'images/map/animation/species-I.gif',
+            migrationStill: 'images/map/Species/2033/species-II.png',
+            migrationAnimate: 'images/map/Species/2033/species-II-blow.gif',
             coralStill: 'images/map/earth.png',
             coralAnimate: 'images/map/earth.png',
             healthImage: 'images/map/health.png',
@@ -480,8 +481,8 @@
         '2063': {
             oceanStill: 'images/map/animation/species-I.gif',
             oceanAnimate: 'images/map/animation/species-II.gif',
-            migrationStill: 'images/map/animation/species-I.gif',
-            migrationAnimate: 'images/map/animation/species-II.gif',
+            migrationStill: 'images/map/Species/2043/species-III.png',
+            migrationAnimate: 'images/map/Species/2043/species-III-blow.gif',
             coralStill: 'images/map/earth.png',
             coralAnimate: 'images/map/earth.png',
             healthImage: 'images/map/health.png',
@@ -493,8 +494,8 @@
         '2083': {
             oceanStill: 'images/map/animation/species-II.gif',
             oceanAnimate: 'images/map/animation/species-III.gif',
-            migrationStill: 'images/map/animation/species-II.gif',
-            migrationAnimate: 'images/map/animation/species-III.gif',
+            migrationStill: 'images/map/Species/2053/species-IV.png',
+            migrationAnimate: 'images/map/Species/2053/species-IV-blow.gif',
             coralStill: 'images/map/earth.png',
             coralAnimate: 'images/map/earth.png',
             healthImage: 'images/map/health.png',
@@ -514,7 +515,7 @@
         }
         document.querySelector('.ocean-temperature img').src = content.oceanStill;
         document.querySelector('.ocean-temperature img').dataset.animate = content.oceanAnimate;
-        document.querySelector('.animal-migration img').src = content.migrationStill;
+        document.querySelector('.animal-migration img').src = content.migrationStill + '?' + new Date().getTime();;
         document.querySelector('.animal-migration img').dataset.animate = content.migrationAnimate;
         document.querySelector('.corall-bleaching img').src = content.coralStill;
         document.querySelector('.corall-bleaching img').dataset.animate = content.coralAnimate;
@@ -523,6 +524,19 @@
         document.querySelector('.whales_num .count').textContent = content.whalesCount;
         document.querySelector('.dugong-num .count').textContent = content.dugongCount;
         document.querySelector('.clownfish-num .count').textContent = content.clownfishCount;
+    }
+
+    // El Nino button
+    var newButton = document.getElementById("elNino");
+
+    // El Nino button to trigger blow modal
+    newButton.onclick = function() {
+        var hintMask = document.getElementById("hintMask");
+        if (hintMask.classList.contains("hidden")) {
+            hintMask.classList.remove("hidden");
+        } else {
+            hintMask.classList.add("hidden");
+        }
     }
 
     function toggleMapGifs() {
