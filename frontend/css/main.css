@@ -700,7 +700,7 @@ body.interaction {
 /* The Modal (background) */
 #togg-gif {
     position: absolute;
-    visibility: hidden
+    /* visibility: hidden */
 }
 
 #elNino {

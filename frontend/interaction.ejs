@@ -227,7 +227,14 @@
             Please blow into the device
         </div>
     </div>
-
+    <!-- The Modal for hint for pouring the water -->
+    <div id="beforeClickModal" class="modal">
+        <div class="modal-content">
+          <p>Please pouring the water</p>
+          <!-- proceed the timeline -->
+          <button id="proceedButton">Proceed</button>
+        </div>
+    </div>
 </body>
  <script>
 
@@ -377,45 +384,80 @@
         }
     }
 
+      // Reference to modal and proceed button
+      var beforeClickModal = document.getElementById("beforeClickModal");
+    var proceedButton = document.getElementById("proceedButton");
+    var currentTarget;
+
     // default car icon when loading the page
     document.querySelector('.timeline[data-slider="0"]').style.backgroundImage = 'url("/images/interaction/SVG/progress_car.svg")';
+    let currentYear = '2023'; // Start with the initial year
     mainControls.addEventListener('click', function(e) {
         if (e.target.tagName === 'INPUT' && e.target.type === 'button') {
-            const targetSlider = e.target.getAttribute('data-slider');
-            
-            // get year and alter context in the modal
-            const year = e.target.value.toString();
-            updateModalContent(year);
-             // Reset background image for all .timeline elements
-            carIcon.forEach(timeline => {
-                timeline.style.backgroundImage = '';
-            });
-
-            // default gif to still status
-            const items = document.querySelectorAll('.item img');
-            items.forEach(img => {
-                const still = img.getAttribute('data-still');
-                img.src = still;
-            });
-
-            sliderWrappers.forEach((slider, idx) => {
-                if (idx == targetSlider) {
-                    slider.classList.add('active');
-                    let title = document.querySelector('.year');
-                    title.innerHTML = `The Year of ${e.target.value}`;
-                    // Set a background image to the clicked .timeline element
-                    e.target.style.backgroundImage = 'url("/images/interaction/SVG/progress_car.svg")';
-                    setLastSlideToBottom(slider);
-                    // render map
-                    render_map(all_bleaching, render_lists[e.target.value])
-                    console.log(e.target.value)
-
-                } else {
-                    slider.classList.remove('active');
-                }
-            });
+            // Store the clicked input element
+        const targetYear = e.target.value.toString();
+        
+        // Check the transition between specific years
+        if (
+            (currentYear === '2023' && targetYear === '2043') ||
+            (currentYear === '2043' && targetYear === '2063') ||
+            (currentYear === '2063' && targetYear === '2083')
+        ) {
+            currentYear = targetYear;            
+            currentTarget = e.target;
+            // Show the modal
+            beforeClickModal.style.display = "block";
+        } else {
+            // If the transition is not between the specific years, execute the timeline functionality directly
+            currentYear = targetYear;
+            executeTimelineFunctionality(e.target);
+        }
         }
     });
+
+    proceedButton.onclick = function() {
+        // Hide the modal
+        beforeClickModal.style.display = "none";
+        // Execute timeline functionality with the stored currentTarget
+        executeTimelineFunctionality(currentTarget);
+    }
+
+    function executeTimelineFunctionality(target) {
+        if (!target) return; // If target is not set, exit the function
+        const targetSlider = target.getAttribute('data-slider');
+        // get year and alter context in the modal
+        const year = target.value.toString();
+        updateModalContent(year);
+
+        // Reset background image for all .timeline elements
+        carIcon.forEach(timeline => {
+            timeline.style.backgroundImage = '';
+        });
+
+        // default gif to still status
+        const items = document.querySelectorAll('.item img');
+        items.forEach(img => {
+            const still = img.getAttribute('data-still');
+            img.src = still;
+        });
+
+        sliderWrappers.forEach((slider, idx) => {
+            if (idx == targetSlider) {
+                slider.classList.add('active');
+                let title = document.querySelector('.year');
+                title.innerHTML = `The Year of ${target.value}`;
+                // Set a background image to the clicked .timeline element
+                target.style.backgroundImage = 'url("/images/interaction/SVG/progress_car.svg")';
+                setLastSlideToBottom(slider);
+                // render map
+                render_map(all_bleaching, render_lists[target.value])
+
+            } else {
+                slider.classList.remove('active');
+            }
+        });
+    }
+
 
     // Ensure the first slider 
     if (sliderWrappers.length > 0) {
