@@ -66,7 +66,7 @@
                             <img src="/images/scene/On-Scene-III/Human2.gif">
                         </div>
                         <div class="slide">
-                            <img src="/images/scene/On-Scene-III/Bird2.gif" ">
+                            <img src="/images/scene/On-Scene-III/Bird2.gif">
                         </div>
                         <div class="slide">
                             <img src="/images/scene/Scene-III.gif" >
@@ -245,13 +245,34 @@
             all_bleaching.push(<%-JSON.stringify(item) %>)
     <% }); %>
     
-    var render_lists = {
-        '2003': [1, 1, 1, 1],
+    const render_lists = {
         '2023': [2, 1, 1, 1],
         '2043': [3, 2, 1, 1],
         '2063': [3, 3, 2, 1],
         '2083': [3, 3, 3, 2]
     }
+
+    const temp = {
+        '2023': 26.3,
+        '2043': 28.3,
+        '2063': 30.3,
+        '2083': 35.3
+    }
+
+    const CO2 = {
+        '2023': 1.5,
+        '2043': 1.6,
+        '2063': 1.7,
+        '2083': 1.8
+    }
+
+    const PH = {
+        '2023': 8.2,
+        '2043': 8.3,
+        '2063': 8.4,
+        '2083': 8.7
+    }
+
         
     // Create a map centered on Australia
     var map = L.map('map').setView([-16.000, 150.000], 5);
@@ -331,7 +352,6 @@
             if(enable_list[i]===3){
                 render_reef(all_bleaching[i], bleaching_style)
             }
-            console.log(enable_list[i])
 
         }
     }
@@ -449,8 +469,20 @@
                 // Set a background image to the clicked .timeline element
                 target.style.backgroundImage = 'url("/images/interaction/SVG/progress_car.svg")';
                 setLastSlideToBottom(slider);
+
+
                 // render map
                 render_map(all_bleaching, render_lists[target.value])
+
+                let temp_html = document.querySelector('.tem');
+                temp_html.innerHTML = `${temp[target.value]}`;
+
+                let ph_html = document.querySelector('.ph');
+                pg_html.innerHTML = `${PH[target.value]}`;
+
+                let co2_html = document.querySelector('.co2');
+                co2_html.innerHTML = `${CO2[target.value]}`;
+
 
             } else {
                 slider.classList.remove('active');
