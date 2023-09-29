@@ -357,9 +357,7 @@
     }
     render_map(all_bleaching, render_lists['2023'])
 
-
-
-
+ 
     // for reef data
     // var geoJSONLayer = L.geoJSON(reef, {
     //     style: style,
@@ -404,8 +402,8 @@
         }
     }
 
-      // Reference to modal and proceed button
-      var beforeClickModal = document.getElementById("beforeClickModal");
+    // Reference to modal and proceed button
+    var beforeClickModal = document.getElementById("beforeClickModal");
     var proceedButton = document.getElementById("proceedButton");
     var currentTarget;
 
@@ -478,11 +476,10 @@
                 temp_html.innerHTML = `${temp[target.value]}`;
 
                 let ph_html = document.querySelector('.ph');
-                pg_html.innerHTML = `${PH[target.value]}`;
+                ph_html.innerHTML = `${PH[target.value]}`;
 
                 let co2_html = document.querySelector('.co2');
                 co2_html.innerHTML = `${CO2[target.value]}`;
-
 
             } else {
                 slider.classList.remove('active');
