@@ -100,25 +100,21 @@
           <input
             class="market btn-control"
             type="button"
-            value="market"
             data-target="0"
           />
           <input
             class="human btn-control"
             type="button"
-            value="human"
             data-target="1"
           />
           <input
             class="species btn-control"
             type="button"
-            value="species"
             data-target="2"
           />
           <input
             class="ocean btn-control"
             type="button"
-            value="ocean"
             data-target="3"
           />
           <input
@@ -178,12 +174,20 @@
           <img src="/images/map/close.png" alt="" />
         </span>
         <h2>Unveriling El Nino's Mysteries</h2>
+        <div class="item">
+          <img class="thermometer" 
+            src="/images/map/Thermometer/thermometer-I.png" 
+            data-still="/images/map/Thermometer/thermometer-I.png"
+            data-animate="/images/map/Thermometer/thermometer-I-blow.gif"  
+            alt=""
+          >
+        </div>
         <div class="status">
           <div class="item ocean-temperature">
             <img
-              src="images/map/Species/2023/species-I.png"
-              data-still="images/map/Species/2023/species-I.png"
-              data-animate="images/map/Species/2023/species-I-blow.gif"
+              src="images/map/Temperature/2023/tem-I.png"
+              data-still="images/map/Temperature/2023/tem-I.png"
+              data-animate="images/map/Temperature/2023/tem-I-blow.gif"
               alt=""
             />
             <h3>Ocean temperature</h3>
@@ -216,30 +220,50 @@
           <div class="species">
             <div class="num dophin-num">
               <img src="images/map/dolphin.png" alt="" />
-              <div class="block">
+              <div class="block item">
                 <h4>Doplin</h4>
-                <h3 class="count">10326</h3>
+                <img class="count"
+                  src="images/map/Number/2023/Dophin-I.png"
+                  data-still="images/map/Number/2023/Dophin-I.png"
+                  data-animate="images/map/Number/2023/Dophin-I-blow.gif"
+                  alt=""
+                >
               </div>
             </div>
             <div class="num whales_num">
               <img src="images/map/whales.png" alt="" />
-              <div class="block">
+              <div class="block item">
                 <h4>Whales</h4>
-                <h3 class="count">13481</h3>
+                <img class="count"
+                  src="images/map/Number/2023/Whale-I.png"
+                  data-still="images/map/Number/2023/Whale-I.png"
+                  data-animate="images/map/Number/2023/Whale-I-blow.gif"
+                  alt=""
+                >
               </div>
             </div>
             <div class="num dugong-num">
               <img src="images/map/dogong.png" alt="" />
-              <div class="block">
+              <div class="block item">
                 <h4>Dugong</h4>
-                <h3 class="count">4865</h3>
+                <img class="count"
+                  src="images/map/Number/2023/Dugong-I.png"
+                  data-still="images/map/Number/2023/Dugong-I.png"
+                  data-animate="images/map/Number/2023/Dugong-I-blow.gif"
+                  alt=""
+                >
               </div>
             </div>
             <div class="num clownfish-num">
               <img src="images/map/nemo.png" alt="" />
-              <div class="block">
+              <div class="block item">
                 <h4>Clownfish</h4>
-                <h3 class="count">16962</h3>
+                <img class="count"
+                  src="images/map/Number/2023/Clownfish-I.png"
+                  data-still="images/map/Number/2023/Clownfish-I.png"
+                  data-animate="images/map/Number/2023/Clownfish-I-blow.gif"
+                  alt=""
+                >
               </div>
             </div>
           </div>
@@ -272,7 +296,7 @@
     </div>
     <!-- The Modal for hint for pouring the water -->
     <div id="beforeClickModal" class="modal">
-      <div class="modal-content">
+      <div class="modal-content pouring">
         <p>Please pouring the water</p>
         <!-- proceed the timeline -->
         <button id="proceedButton">Proceed</button>
@@ -470,24 +494,25 @@
         let currentYear = '2023'; // Start with the initial year
         mainControls.addEventListener('click', function(e) {
             if (e.target.tagName === 'INPUT' && e.target.type === 'button') {
-                // Store the clicked input element
-            const targetYear = e.target.value.toString();
+              removeActiveBtnClass();
+              // Store the clicked input element
+              const targetYear = e.target.value.toString();
 
-            // Check the transition between specific years
-            if (
-                (currentYear === '2023' && targetYear === '2043') ||
-                (currentYear === '2043' && targetYear === '2063') ||
-                (currentYear === '2063' && targetYear === '2083')
-            ) {
-                currentYear = targetYear;
-                currentTarget = e.target;
-                // Show the modal
-                beforeClickModal.style.display = "block";
-            } else {
-                // If the transition is not between the specific years, execute the timeline functionality directly
-                currentYear = targetYear;
-                executeTimelineFunctionality(e.target);
-            }
+              // Check the transition between specific years
+              if (
+                  (currentYear === '2023' && targetYear === '2043') ||
+                  (currentYear === '2043' && targetYear === '2063') ||
+                  (currentYear === '2063' && targetYear === '2083')
+              ) {
+                  currentYear = targetYear;
+                  currentTarget = e.target;
+                  // Show the modal
+                  beforeClickModal.style.display = "block";
+              } else {
+                  // If the transition is not between the specific years, execute the timeline functionality directly
+                  currentYear = targetYear;
+                  executeTimelineFunctionality(e.target);
+              }
             }
         });
 
@@ -555,6 +580,8 @@
         const globalControls = document.querySelector('.controls');
         globalControls.addEventListener('click', function(e) {
             if (e.target.tagName === 'INPUT' && e.target.type === 'button') {
+                removeActiveBtnClass();
+                e.target.classList.add('active-btn');
                 const activeSliderWrapper = document.querySelector('.slider-wrapper.active');
                 const slides = activeSliderWrapper.querySelectorAll('.slide');
                 const targetOffsetTop = slides[e.target.getAttribute('data-target')].offsetTop;
@@ -564,6 +591,14 @@
                 });
             }
         });
+
+        function removeActiveBtnClass() {
+            const allButtons = document.querySelectorAll('.btn-control');
+            allButtons.forEach(button => {
+                button.classList.remove('active-btn');
+            });
+        }
+
 
         // Sensor Interaction - Timeline
         document.addEventListener('keydown', function(e) {
@@ -648,58 +683,81 @@
         }
 
         const contents = {
-            '2023': {
-                oceanStill: 'images/map/animation/species-default.png',
-                oceanAnimate: 'images/map/animation/species-default.png',
+            '2023': { 
+                thermStill: "/images/map/Thermometer/thermometer-I.png",
+                thermAnimate: "/images/map/Thermometer/thermometer-I-blow.gif" ,
+                oceanStill: 'images/map/Temperature/2023/tem-I.png',
+                oceanAnimate: 'images/map/Temperature/2023/tem-I-blow.gif',
                 migrationStill: 'images/map/Species/2023/species-I.png',
                 migrationAnimate: 'images/map/Species/2023/species-I-blow.gif',
                 coralStill: 'images/map/earth.png',
                 coralAnimate: 'images/map/earth.png',
                 healthImage: 'images/map/health.png',
-                doplinCount: '10500',
-                whalesCount: '14000',
-                dugongCount: '5000',
-                clownfishCount: '17000',
-
+                dolphinStill: "images/map/Number/2023/Dophin-I.png",
+                dolphinAnimate: "images/map/Number/2023/Dophin-I-blow.gif",
+                whalesStill: "images/map/Number/2023/Whale-I.png",
+                whalesAnimate: "images/map/Number/2023/Whale-I-blow.gif",
+                dugongStill: "images/map/Number/2023/Dugong-I.png",
+                dugongAnimate: "images/map/Number/2023/Dugong-I-blow.gif",
+                clownfishStill: "images/map/Number/2023/Clownfish-I.png",
+                clownfishAnimate: "images/map/Number/2023/Clownfish-I-blow.gif",
             },
             '2043': {
-                oceanStill: 'images/map/animation/species-default.png',
-                oceanAnimate: 'images/map/animation/species-I.gif',
-                migrationStill: 'images/map/Species/2033/species-II.png',
-                migrationAnimate: 'images/map/Species/2033/species-II-blow.gif',
+                thermStill: "/images/map/Thermometer/thermometer-II.png",
+                thermAnimate: "/images/map/Thermometer/thermometer-II-blow.gif" ,
+                oceanStill: 'images/map/Temperature/2043/tem-II.gif',
+                oceanAnimate: 'images/map/Temperature/2043/tem-II-blow.gif',
+                migrationStill: 'images/map/Species/2043/species-II.png',
+                migrationAnimate: 'images/map/Species/2043/species-II-blow.gif',
                 coralStill: 'images/map/earth.png',
                 coralAnimate: 'images/map/earth.png',
                 healthImage: 'images/map/health.png',
-                doplinCount: '7500',
-                whalesCount: '13000',
-                dugongCount: '4000',
-                clownfishCount: '14000',
+                dolphinStill: "images/map/Number/2043/Dophin-II.png",
+                dolphinAnimate: "images/map/Number/2043/Dophin-II-blow.gif",
+                whalesStill: "images/map/Number/2043/Whale-II.png",
+                whalesAnimate: "images/map/Number/2043/Whale-II-blow.gif",
+                dugongStill: "images/map/Number/2043/Dugong-II.png",
+                dugongAnimate: "images/map/Number/2043/Dugong-II-blow.gif",
+                clownfishStill: "images/map/Number/2043/Clownfish-II.png",
+                clownfishAnimate: "images/map/Number/2043/Clownfish-II-blow.gif",
             },
             '2063': {
-                oceanStill: 'images/map/animation/species-I.gif',
-                oceanAnimate: 'images/map/animation/species-II.gif',
-                migrationStill: 'images/map/Species/2043/species-III.png',
-                migrationAnimate: 'images/map/Species/2043/species-III-blow.gif',
+                thermStill: "/images/map/Thermometer/thermometer-III.png",
+                thermAnimate: "/images/map/Thermometer/thermometer-III-blow.gif" ,
+                oceanStill: 'images/map/Temperature/2063/tem-III.gif',
+                oceanAnimate: 'images/map/Temperature/2063/tem-III-blow.gif',
+                migrationStill: 'images/map/Species/2063/species-III.png',
+                migrationAnimate: 'images/map/Species/2063/species-III-blow.gif',
                 coralStill: 'images/map/earth.png',
                 coralAnimate: 'images/map/earth.png',
                 healthImage: 'images/map/health.png',
-                doplinCount: '6500',
-                whalesCount: '11000',
-                dugongCount: '37000',
-                clownfishCount: '10000',
+                dolphinStill: "images/map/Number/2063/Dophin-III.png",
+                dolphinAnimate: "images/map/Number/2063/Dophin-III-blow.gif",
+                whalesStill: "images/map/Number/2063/Whale-III.png",
+                whalesAnimate: "images/map/Number/2063/Whale-III-blow.gif",
+                dugongStill: "images/map/Number/2063/Dugong-III.png",
+                dugongAnimate: "images/map/Number/2063/Dugong-III-blow.gif",
+                clownfishStill: "images/map/Number/2063/Clownfish-III.png",
+                clownfishAnimate: "images/map/Number/2063/Clownfish-III-blow.gif",
             },
             '2083': {
-                oceanStill: 'images/map/animation/species-II.gif',
-                oceanAnimate: 'images/map/animation/species-III.gif',
-                migrationStill: 'images/map/Species/2053/species-IV.png',
-                migrationAnimate: 'images/map/Species/2053/species-IV-blow.gif',
+                thermStill: "/images/map/Thermometer/thermometer-IV.png",
+                thermAnimate: "/images/map/Thermometer/thermometer-IV-blow.gif" ,
+                oceanStill: 'images/map/Temperature/2083/tem-IV.gif',
+                oceanAnimate: 'images/map/Temperature/2083/tem-IV-blow.gif',
+                migrationStill: 'images/map/Species/2083/species-IV.png',
+                migrationAnimate: 'images/map/Species/2083/species-IV-blow.gif',
                 coralStill: 'images/map/earth.png',
                 coralAnimate: 'images/map/earth.png',
                 healthImage: 'images/map/health.png',
-                doplinCount: '500',
-                whalesCount: '8000',
-                dugongCount: '2000',
-                clownfishCount: '7000',
+                dolphinStill: "images/map/Number/2083/Dophin-IV.png",
+                dolphinAnimate: "images/map/Number/2083/Dophin-IV-blow.gif",
+                whalesStill: "images/map/Number/2083/Whale-IV.png",
+                whalesAnimate: "images/map/Number/2083/Whale-IV-blow.gif",
+                dugongStill: "images/map/Number/2083/Dugong-IV.png",
+                dugongAnimate: "images/map/Number/2083/Dugong-IV-blow.gif",
+                clownfishStill: "images/map/Number/2083/Clownfish-IV.png",
+                clownfishAnimate: "images/map/Number/2083/Clownfish-IV-blow.gif",
             },
         };
 
@@ -710,17 +768,46 @@
                 console.error(`No content found for year ${year}`);
                 return;
             }
-            document.querySelector('.ocean-temperature img').src = content.oceanStill;
-            document.querySelector('.ocean-temperature img').dataset.animate = content.oceanAnimate;
-            document.querySelector('.animal-migration img').src = content.migrationStill + '?' + new Date().getTime();;
-            document.querySelector('.animal-migration img').dataset.animate = content.migrationAnimate;
-            document.querySelector('.corall-bleaching img').src = content.coralStill;
-            document.querySelector('.corall-bleaching img').dataset.animate = content.coralAnimate;
+            const thermometerImage = document.querySelector('.thermometer');
+            thermometerImage.src = content.thermStill;
+            thermometerImage.dataset.still = content.thermStill;
+            thermometerImage.dataset.animate = content.thermAnimate;
+            
+            const oceanTemperatureImage = document.querySelector('.ocean-temperature img');
+            oceanTemperatureImage.src = content.oceanStill;
+            oceanTemperatureImage.dataset.still = content.oceanStill;
+            oceanTemperatureImage.dataset.animate = content.oceanAnimate;
+
+            const animalMigrationImage = document.querySelector('.animal-migration img');
+            animalMigrationImage.src = content.migrationStill;
+            animalMigrationImage.dataset.still = content.migrationStill;
+            animalMigrationImage.dataset.animate = content.migrationAnimate;
+
+            const coralBleachingImage = document.querySelector('.corall-bleaching img');
+            coralBleachingImage.src = content.coralStill;
+            coralBleachingImage.dataset.still = content.coralStill;
+            coralBleachingImage.dataset.animate = content.coralAnimate;
             document.querySelector('.health-img').src = content.healthImage;
-            document.querySelector('.dophin-num .count').textContent = content.doplinCount;
-            document.querySelector('.whales_num .count').textContent = content.whalesCount;
-            document.querySelector('.dugong-num .count').textContent = content.dugongCount;
-            document.querySelector('.clownfish-num .count').textContent = content.clownfishCount;
+            const doplinImage = document.querySelector('.dophin-num .count');
+            doplinImage.src = content.dolphinStill;
+            doplinImage.dataset.still = content.dolphinStill;
+            doplinImage.dataset.animate = content.dolphinAnimate;
+
+            const whalesImage = document.querySelector('.whales_num .count');
+            whalesImage.src = content.whalesStill;
+            whalesImage.dataset.still = content.whalesStill;
+            whalesImage.dataset.animate = content.whalesAnimate;
+
+            const dugongImage = document.querySelector('.dugong-num .count');
+            dugongImage.src = content.dugongStill;
+            dugongImage.dataset.still = content.dugongStill;
+            dugongImage.dataset.animate = content.dugongAnimate;
+
+            const clownfishImage = document.querySelector('.clownfish-num .count');
+            clownfishImage.src = content.clownfishStill;
+            clownfishImage.dataset.still = content.clownfishStill;
+            clownfishImage.dataset.animate = content.clownfishAnimate;
+
         }
 
         // El Nino button

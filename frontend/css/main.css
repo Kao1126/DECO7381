@@ -485,8 +485,7 @@ body.interaction {
 .slider-wrapper {
     overflow: hidden;
     width: 58%;
-    /* height: 580px; */
-    height: 500px;
+    height: 620px;
     margin: 0 auto;
     position: relative;
     border: 10px solid #c7c7c7;
@@ -588,34 +587,49 @@ body.interaction {
 .inter-sec .btn-control {
     position: absolute;
     border-radius: 50%;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border: none;
     outline: none;
     cursor: pointer;
-    background: linear-gradient(45deg, rgb(40, 34, 212), rgb(224, 90, 28));
+    background-repeat: no-repeat;
+    background-position:center;
+    background-color: rgba(0, 32, 109, 0.8);
+    background-size: 50px;
     z-index: 3;
 }
 
 .btn-control.ocean {
-    bottom: 5%;
-    left: 42%;
+    bottom: 43%;
+    left: 59%;
+    background-image: url(../images/interaction/undersea.png);
 }
 
 .btn-control.species {
-    bottom: 5%;
-    left: 47%;
+    bottom: 51%;
+    left: 59%;
+    background-size: 45px;
+    background-image: url(../images/interaction/seabirds.png);
 }
 
 .btn-control.human {
-    bottom: 5%;
-    left: 52%;
+    bottom: 59%;
+    left: 59%;
+    background-size: 40px;
+    background-image: url(../images/interaction/human-life.png);
 }
 
 .btn-control.market {
-    bottom: 5%;
-    left: 57%;
+    bottom: 67%;
+    left: 59%;
+    background-size: 43px;
+    background-image: url(../images/interaction/fishery.png);
 }
+
+.inter-sec .active-btn {
+    background-color: rgba(102, 45, 145, 0.8);
+}
+
 
 .info .car {
     position: absolute;
@@ -731,13 +745,17 @@ body.interaction {
   
 /* Modal Content */
 .modal-content {
-    background-color: #dee1ef;
+    background-color: #c5d1ef;
     margin: auto;
     padding: 25px;
     border: 1px solid #888;
     border-radius: 8px;
     width: 80%;
     text-align: center;
+}
+
+.modal-content.pouring {
+    background-color: #dee1ef;
 }
 
 /* The Close Button */
@@ -759,6 +777,13 @@ body.interaction {
     color:rgb(40, 12, 125);
 }
 
+.modal .thermometer {
+    width: 600px;
+    height: 80px;
+    object-fit: cover;
+    object-position: -15px -45px;
+}
+
 .modal .status {
     display: flex;
     flex-wrap: nowrap;
@@ -766,17 +791,17 @@ body.interaction {
     justify-content: center;
 }
 
-.modal .item {
+.status .item {
     margin: 20px 30px;
 }
 
-.modal .item h3 {
+.status .item h3 {
     font-family: sans-serif;
     color: #130658;
     margin: 10px;
 }
 
-.modal .item img {
+.status .item img {
     width: 20vw;
 }
 
@@ -821,10 +846,13 @@ body.interaction {
     color: #eee;
 }
 
-.species .block h3 {
-    margin: 5px 0;
-    font-size: 22px;
-    font-family: sans-serif;
+.species h4 {
+    font-size: 20px;
+}
+
+.species .count {
+    width: 82px;
+    height: auto;
 }
 
 .species img {
