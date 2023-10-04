@@ -288,6 +288,18 @@
                 all_bleaching.push(<%-JSON.stringify(item) %>)
         <% }); %>
 
+        var trigger = false;
+
+        var socket = new WebSocket('ws://localhost:3000');
+        socket.addEventListener('message', (event) => {
+              console.log(event.data)
+              if(event.data == 1 && trigger == true){
+                toggleMapGifs()
+                trigger = false
+            }
+          });
+
+
         const render_lists = {
             '2023': [2, 1, 1, 1],
             '2043': [3, 2, 1, 1],
@@ -417,7 +429,10 @@
 
         // When the user clicks the button, open the modal
         btn.onclick = function() {
-            modal.style.display = "block";
+          modal.style.display = "block";
+                 // From blowing system
+          trigger = true
+          
         }
 
         // When the user clicks on <span> (x), close the modal
