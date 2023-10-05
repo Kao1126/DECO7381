@@ -173,7 +173,10 @@
         <span class="close">
           <img src="/images/map/close.png" alt="" />
         </span>
-        <h2>Unveriling El Nino's Mysteries</h2>
+        <a href="#" class="elNino" id="elNino">
+          <img src="images/animation/TUT-blow.gif" alt="">
+        </a>
+        <h2 style="display: inline-block;">Unveriling El Nino's Mysteries</h2>
         <div class="item">
           <img class="thermometer" 
             src="/images/map/Thermometer/thermometer-I.png" 
@@ -203,19 +206,24 @@
           </div>
           <div class="item corall-bleaching">
             <img
-              src="images/map/earth.png"
-              data-still="images/map/earth.png"
-              data-animate="images/map/earth.png"
+              src="images/map/coralbleach/normal/normal_1.png"
+              data-still="images/map/coralbleach/normal/normal_1.png"
+              data-animate="images/map/coralbleach/bleaching/bleaching_1.png"
               alt=""
             />
             <h3>Coral Bleaching</h3>
           </div>
         </div>
-        <button id="elNino">El Nino</button>
+        <!-- <button style="display: none;" id="elNino">El Nino</button> -->
         <button id="togg-gif" onclick="toggleMapGifs()">Toggle GIFs</button>
         <div class="figure">
-          <div class="health">
-            <img class="health-img" src="images/map/health.png" alt="" />
+          <div class="health item">
+            <img class="health-img" 
+              src="images/map/health.png" 
+              data-still="images/map/health.png"
+              data-animate="images/map/earth/earth1.gif"
+              alt="" 
+            />
           </div>
           <div class="species">
             <div class="num dophin-num">
@@ -292,12 +300,28 @@
     </div>
     <!-- give the hint when open modal -->
     <div id="hintMask" class="hint-mask hidden">
-      <div class="hint-content">Please blow into the device</div>
+      <div class="hint-content">
+        <h3>
+          Please blow into the device to explore the El Niño
+        </h3>
+        <img src="images/animation/TUT-blow.gif" alt="">
+      </div>
     </div>
     <!-- The Modal for hint for pouring the water -->
     <div id="beforeClickModal" class="modal">
       <div class="modal-content pouring">
-        <p>Please pouring the water</p>
+        <h3>
+          <p>Sea water temperatures are rising,</p>
+          simulate this by pouring hot water into a tank, and you'll soon see the results.
+        </h3>
+        <div class="wrapper">
+          <img class="behave"
+            src="images/animation/TUT-pour.gif"
+            data-still="images/animation/TUT-pour.gif"
+            alt=""
+          >
+        </div>
+        <p></p>
         <!-- proceed the timeline -->
         <button id="proceedButton">Proceed</button>
       </div>
@@ -497,7 +521,7 @@
               removeActiveBtnClass();
               // Store the clicked input element
               const targetYear = e.target.value.toString();
-
+              
               // Check the transition between specific years
               if (
                   (currentYear === '2023' && targetYear === '2043') ||
@@ -506,6 +530,7 @@
               ) {
                   currentYear = targetYear;
                   currentTarget = e.target;
+                  updateHumanBehavior(targetYear);
                   // Show the modal
                   beforeClickModal.style.display = "block";
               } else {
@@ -529,7 +554,7 @@
             // get year and alter context in the modal
             const year = target.value.toString();
             updateModalContent(year);
-
+            
             // Reset background image for all .timeline elements
             carIcon.forEach(timeline => {
                 timeline.style.backgroundImage = '';
@@ -690,9 +715,10 @@
                 oceanAnimate: 'images/map/Temperature/2023/tem-I-blow.gif',
                 migrationStill: 'images/map/Species/2023/species-I.png',
                 migrationAnimate: 'images/map/Species/2023/species-I-blow.gif',
-                coralStill: 'images/map/earth.png',
-                coralAnimate: 'images/map/earth.png',
-                healthImage: 'images/map/health.png',
+                coralStill: "images/map/coralbleach/normal/normal_1.png",
+                coralAnimate: "images/map/coralbleach/bleaching/bleaching_1.png",
+                healthStill: 'images/map/health.png',
+                healthAnimate: "images/map/earth/earth1.gif",
                 dolphinStill: "images/map/Number/2023/Dophin-I.png",
                 dolphinAnimate: "images/map/Number/2023/Dophin-I-blow.gif",
                 whalesStill: "images/map/Number/2023/Whale-I.png",
@@ -709,9 +735,10 @@
                 oceanAnimate: 'images/map/Temperature/2043/tem-II-blow.gif',
                 migrationStill: 'images/map/Species/2043/species-II.png',
                 migrationAnimate: 'images/map/Species/2043/species-II-blow.gif',
-                coralStill: 'images/map/earth.png',
-                coralAnimate: 'images/map/earth.png',
-                healthImage: 'images/map/health.png',
+                coralStill: "images/map/coralbleach/normal/normal_2.png",
+                coralAnimate: "images/map/coralbleach/bleaching/bleaching_2.png",
+                healthStill: 'images/map/earth/earth1.gif',
+                healthAnimate: "images/map/earth/earth2.gif",
                 dolphinStill: "images/map/Number/2043/Dophin-II.png",
                 dolphinAnimate: "images/map/Number/2043/Dophin-II-blow.gif",
                 whalesStill: "images/map/Number/2043/Whale-II.png",
@@ -728,9 +755,10 @@
                 oceanAnimate: 'images/map/Temperature/2063/tem-III-blow.gif',
                 migrationStill: 'images/map/Species/2063/species-III.png',
                 migrationAnimate: 'images/map/Species/2063/species-III-blow.gif',
-                coralStill: 'images/map/earth.png',
-                coralAnimate: 'images/map/earth.png',
-                healthImage: 'images/map/health.png',
+                coralStill: "images/map/coralbleach/normal/normal_3.png",
+                coralAnimate: "images/map/coralbleach/bleaching/bleaching_3.png",
+                healthStill: 'images/map/earth/earth2.gif',
+                healthAnimate: "images/map/earth/earth3.gif",
                 dolphinStill: "images/map/Number/2063/Dophin-III.png",
                 dolphinAnimate: "images/map/Number/2063/Dophin-III-blow.gif",
                 whalesStill: "images/map/Number/2063/Whale-III.png",
@@ -747,9 +775,10 @@
                 oceanAnimate: 'images/map/Temperature/2083/tem-IV-blow.gif',
                 migrationStill: 'images/map/Species/2083/species-IV.png',
                 migrationAnimate: 'images/map/Species/2083/species-IV-blow.gif',
-                coralStill: 'images/map/earth.png',
-                coralAnimate: 'images/map/earth.png',
-                healthImage: 'images/map/health.png',
+                coralStill: "images/map/coralbleach/normal/normal_4.png",
+                coralAnimate: "images/map/coralbleach/bleaching/bleaching_4.png",
+                healthStill: 'images/map/earth/earth3.gif',
+                healthAnimate: "images/map/earth/earth4.gif",
                 dolphinStill: "images/map/Number/2083/Dophin-IV.png",
                 dolphinAnimate: "images/map/Number/2083/Dophin-IV-blow.gif",
                 whalesStill: "images/map/Number/2083/Whale-IV.png",
@@ -759,6 +788,22 @@
                 clownfishStill: "images/map/Number/2083/Clownfish-IV.png",
                 clownfishAnimate: "images/map/Number/2083/Clownfish-IV-blow.gif",
             },
+        };
+
+        const beforeClickContent = {
+            '2023': {
+                humanBehaveImage: "images/animation/human-behave/loading1.gif"          
+            },
+            '2043': {
+                humanBehaveImage: "images/animation/human-behave/loading1.gif"          
+            },
+            '2063': {
+                humanBehaveImage: "images/animation/human-behave/loading2.gif"          
+            },
+            '2083': {
+                humanBehaveImage: "images/animation/human-behave/loading3.gif"          
+            },
+
         };
 
 
@@ -787,7 +832,12 @@
             coralBleachingImage.src = content.coralStill;
             coralBleachingImage.dataset.still = content.coralStill;
             coralBleachingImage.dataset.animate = content.coralAnimate;
-            document.querySelector('.health-img').src = content.healthImage;
+            
+            const healthImage = document.querySelector('.health img');
+            healthImage.src = content.healthStill;
+            healthImage.dataset.still = content.healthStill;
+            healthImage.dataset.animate = content.healthAnimate;
+
             const doplinImage = document.querySelector('.dophin-num .count');
             doplinImage.src = content.dolphinStill;
             doplinImage.dataset.still = content.dolphinStill;
@@ -807,7 +857,27 @@
             clownfishImage.src = content.clownfishStill;
             clownfishImage.dataset.still = content.clownfishStill;
             clownfishImage.dataset.animate = content.clownfishAnimate;
+            
+        }
 
+        function updateHumanBehavior(year) {
+            const beforeClickData = beforeClickContent[year];
+            if (!beforeClickData) {
+                console.error(`No human behavior data found for year ${year}`);
+                return;
+            }
+
+            // puring water images update
+            // default image for pouring water
+            const humanBehaveImage = document.querySelector('.pouring .behave');
+            humanBehaveImage.src = "images/animation/TUT-pour.gif";
+            humanBehaveImage.dataset.still = "images/animation/TUT-pour.gif";
+
+            // after three secs, change to certain year's human behave image
+            setTimeout(() => {
+                humanBehaveImage.src = beforeClickData.humanBehaveImage;
+                humanBehaveImage.dataset.still = beforeClickData.humanBehaveImage;
+            }, 3000);
         }
 
         // El Nino button

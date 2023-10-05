@@ -1,5 +1,5 @@
 *.vscode
 frontend/images/scene
 frontend/images/map
-frontend/images/animation
+frontend/images/animation/human-behave
 .DS_Store
