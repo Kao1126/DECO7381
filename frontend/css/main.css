@@ -377,7 +377,7 @@ body.interaction {
 }
 
 .data-sec .svg3 {
-    top: 28%;
+    top: 25%;
     right: 13%;
     animation: float 5s ease-in-out infinite;
 }
@@ -913,3 +913,31 @@ body.interaction {
     border-radius: 10px;
     background-color: #F0F1F3;
 }
+
+/* backgorund */
+body.background {
+    display: flex;
+    /* background-color: rgb(21, 21, 102); */
+    background-color: black;
+}
+
+body.before {
+    background-image: url(../images/interaction/background.png);
+}
+
+.bgc-sec,
+.process-sec {
+    margin: auto;
+}
+
+.bgc-sec img {
+    width: 20vw;
+    position: absolute;
+    left: 40%;
+    top: 49%;
+}
+
+.bgc-sec a:hover img {
+    filter: drop-shadow(0 0 30px hsla(168,90%,45%,1));
+}
+

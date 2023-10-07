@@ -15,31 +15,37 @@
         <div class="mask"></div>
     </section>
     <section class="explore-loc">
-        <div class="svg-container svg1">
+        <div class="svg-container svg1" id="svg1" draggable="true" ondragstart="drag(event)">
             <img class="loc" src="/images/explore/SVG/Park1/park1.svg" alt="park1"/>
             <div class="overlay-text">Tasman Fracture Marine Park</div>
         </div>
-        <div class="svg-container svg2">
+        <div class="svg-container svg2" id="svg2" draggable="true" ondragstart="drag(event)">
             <img class="loc" src="/images/explore/SVG/Park2/park2.svg" alt="park2"/>
             <div class="overlay-text">Oceanic Shoals Marine Park</div>
         </div>
-        <div class="svg-container svg3">
+        <div class="svg-container svg3" id="svg3" draggable="true" ondragstart="drag(event)">
             <img class="loc" src="/images/explore/SVG/Park3/park3.svg" alt="park3"/>
             <div class="overlay-text">Perth Canyon Marine Park</div>
         </div>
-        <div class="svg-container svg4">
+        <div class="svg-container svg4" id="svg4" draggable="true" ondragstart="drag(event)">
             <img class="loc" src="/images/explore/SVG/Park5/park5.svg" alt="park5"/>
             <div class="overlay-text">Gascoyne Marine Park</div>
         </div>
-        <div class="svg-container svg5">
+        <!-- <div class="svg-container svg5" id="svg5" draggable="true" ondragstart="drag(event)">
             <a href="/data_visual">
-                <img class="loc" src="/images/explore/SVG/Park4/park4.svg" alt="park4"/>
+                <img
+                    class="loc" src="/images/explore/SVG/Park4/park4.svg" alt="park4"/>
                 <div class="overlay-text">Coral Sea Marine Park</div>
             </a>
+        </div> -->
+        <div class="svg-container svg5" id="svg5" draggable="true" ondragstart="drag(event)"/>
+            <img class="loc" src="/images/explore/SVG/Park4/park4.svg" alt="park4">
+            <div class="overlay-text">Coral Sea Marine Park</div>
         </div>
+        
     </section>
     <a href="/data_visual">
-        <img class="btn" src="/images/explore/SVG/ball.svg" alt=""/>
+        <img class="btn" src="/images/explore/SVG/ball.svg" alt="" ondrop="drop(event)" ondragover="allowDrop(event)"/>
     </a>
 </body>
 <script>
@@ -208,6 +214,32 @@
         style: style,
         onEachFeature: onEachFeature
     }).addTo(map);
+
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var draggedElement = document.getElementById(data);
+
+        // Check if draggedElement exists
+        if (!draggedElement) {
+            console.error("Dragged element not found:", data);
+            return;
+        }
+
+        // Navigate to the desired URL
+        window.location.href = "/data_visual";
+    }
+
+
 
 </script>
 </html>
