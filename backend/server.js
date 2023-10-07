@@ -79,6 +79,13 @@ app.get('/map', (req, res) => {
   res.render('map.ejs', {all_reef: src.all_reef, reef_bleaching: src.reef_bleaching, reef_bleaching_data: src.reef_bleaching_data});
 })
 
+app.get('/background', (req, res) => {
+  res.render('background.ejs');
+})
+
+app.get('/before-interaction', (req, res) => {
+  res.render('before-interaction.ejs');
+})
 
 app.listen(8080, () => {
     console.log("LISTENING ON PORT 8080");
