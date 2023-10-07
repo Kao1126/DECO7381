@@ -41,10 +41,10 @@
         <div class="slider-wrapper" id="slider1">
           <div class="slider">
             <div class="slide">
-              <img src="/images/scene/On-Scene-II/Fish1.gif" />
+              <img src="/images/scene/On-Scene-II/Human1.gif" />
             </div>
             <div class="slide">
-              <img src="/images/scene/On-Scene-II/Human1.gif" />
+              <img src="/images/scene/On-Scene-II/Fish1.gif" />
             </div>
             <div class="slide">
               <img src="/images/scene/On-Scene-II/Bird1.gif" ">
@@ -60,10 +60,10 @@
         <div class="slider-wrapper" id="slider2">
           <div class="slider">
             <div class="slide">
-              <img src="/images/scene/On-Scene-III/Fish2.gif" />
+              <img src="/images/scene/On-Scene-III/Human2.gif" />
             </div>
             <div class="slide">
-              <img src="/images/scene/On-Scene-III/Human2.gif" />
+              <img src="/images/scene/On-Scene-III/Fish2.gif" />
             </div>
             <div class="slide">
               <img src="/images/scene/On-Scene-III/Bird2.gif" />
@@ -79,10 +79,10 @@
         <div class="slider-wrapper" id="slider3">
           <div class="slider">
             <div class="slide">
-              <img src="/images/scene/On-Scene-IV/Fish3.gif" />
+              <img src="/images/scene/On-Scene-IV/Human3.gif" />
             </div>
             <div class="slide">
-              <img src="/images/scene/On-Scene-IV/Human3.gif" />
+              <img src="/images/scene/On-Scene-IV/Fish3.gif" />
             </div>
             <div class="slide">
               <img src="/images/scene/On-Scene-IV/Bird3.gif" ">
@@ -98,12 +98,12 @@
         <!-- 按鈕會控制t跟影片 -->
         <div class="controls">
           <input
-            class="market btn-control"
+            class="human btn-control"
             type="button"
             data-target="0"
           />
           <input
-            class="human btn-control"
+            class="market btn-control"
             type="button"
             data-target="1"
           />
@@ -311,8 +311,8 @@
     <div id="beforeClickModal" class="modal">
       <div class="modal-content pouring">
         <h3>
-          <p>Sea water temperatures are rising,</p>
-          simulate this by pouring hot water into a tank, and you'll soon see the results.
+          <p>Sea water temperatures are rising,<br>
+          simulate this by pouring hot water into a tank, and you'll soon see the results.</p>
         </h3>
         <div class="wrapper">
           <img class="behave"
@@ -326,6 +326,29 @@
         <button id="proceedButton">Proceed</button>
       </div>
     </div>
+    <div id="myContent">
+      <div class="guide-step" id="step1Element"></div>
+      <div class="guide-step" id="step2Element"></div>
+      <div class="guide-step" id="step3Element"></div>
+      <div class="guide-step" id="step4Element"></div>
+      <div class="guide-step" id="step5Element"></div>
+      <div class="guide-step" id="step6Element"></div>
+      <div class="guide-step" id="step7Element"></div>
+      <div class="guide-step" id="step8Element"></div>
+      <div class="guide-step" id="step9Element"></div>
+      <div class="guide-step" id="step10Element"></div>
+    </div> 
+    
+    <!-- Tutorial Modal Structure -->
+    <div class="guide-tooltip hidden" id="guideTooltip">
+        <div class="tooltip-content"></div>
+        <div class="tooltip-image"></div>
+        <button class="step-btn" onclick="nextStep()">Got it</button>
+    </div>
+
+
+    
+
   </body>
   <script>
 
@@ -474,13 +497,13 @@
         var btn = document.getElementById("openMap");
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
-
+         
         // When the user clicks the button, open the modal
         btn.onclick = function() {
           modal.style.display = "block";
                  // From blowing system
-          trigger = true
-          
+          trigger = true;
+          show2023Guide();
         }
 
         // When the user clicks on <span> (x), close the modal
@@ -512,7 +535,7 @@
         var beforeClickModal = document.getElementById("beforeClickModal");
         var proceedButton = document.getElementById("proceedButton");
         var currentTarget;
-
+        let hasStep10Shown = false;
         // default car icon when loading the page
         document.querySelector('.timeline[data-slider="0"]').style.backgroundImage = 'url("/images/interaction/SVG/progress_car.svg")';
         let currentYear = '2023'; // Start with the initial year
@@ -533,6 +556,13 @@
                   updateHumanBehavior(targetYear);
                   // Show the modal
                   beforeClickModal.style.display = "block";
+
+                 // Check if transitioning from 2023 to 2043 and step10 has not been shown
+                if (currentYear === '2043' && !hasStep10Shown) {
+                    document.querySelector('.guide-tooltip').style.backgroundColor = "white";
+                    showPourGuide();
+                    hasStep10Shown = true;  // Set the flag to true
+                }
               } else {
                   // If the transition is not between the specific years, execute the timeline functionality directly
                   currentYear = targetYear;
@@ -554,7 +584,7 @@
             // get year and alter context in the modal
             const year = target.value.toString();
             updateModalContent(year);
-            
+
             // Reset background image for all .timeline elements
             carIcon.forEach(timeline => {
                 timeline.style.backgroundImage = '';
@@ -876,8 +906,11 @@
             // after three secs, change to certain year's human behave image
             setTimeout(() => {
                 humanBehaveImage.src = beforeClickData.humanBehaveImage;
-                humanBehaveImage.dataset.still = beforeClickData.humanBehaveImage;
-            }, 2000);
+                humanBehaveImage.dataset.still = beforeClickData.humanBehaveImage;       
+                const paragraphElement = document.querySelector('.pouring h3 p');
+                paragraphElement.innerHTML = 'The earth is now being destroyed…';
+
+            }, 3000);
         }
 
         // El Nino button
@@ -894,22 +927,225 @@
         }
 
         function toggleMapGifs() {
-        const items = document.querySelectorAll('.item img');
+          const items = document.querySelectorAll('.item img');
 
-        items.forEach(img => {
-            const still = img.getAttribute('data-still');
-            const animate = img.getAttribute('data-animate');
-            if (img.src === still) {
-                document.getElementById('hintMask').classList.remove('hidden');
-            } else {
-                document.getElementById('hintMask').classList.add('hidden');
+          items.forEach(img => {
+              const still = img.getAttribute('data-still');
+              const animate = img.getAttribute('data-animate');
+              if (img.src === still) {
+                  document.getElementById('hintMask').classList.remove('hidden');
+              } else {
+                  document.getElementById('hintMask').classList.add('hidden');
+              }
+              if (img.src.endsWith(still)) {
+                  img.src = animate;
+              } else {
+                  img.src = still;
+              }
+          });
+          // 檢查是否需要顯示step9
+          if (!stepsData.includes(step9Data)) {
+              stepsData.splice(8, 0, step9Data);
+              currentStep = 8;
+              showGuide(currentStep);
+          }
+        }
+
+
+        window.onload = function() {
+          localStorage.removeItem('tutorial');
+          localStorage.removeItem('2023GuideShown');
+          if (!localStorage.getItem('tutorial')) {
+              currentStep = 0;
+              showGuide();
+              localStorage.setItem('tutorial', 'true');
+          }
+        }
+
+        const step8Data = {
+            selector: "#step8Element",
+            message: "Explore the impact of the EI Nino on current ocean conditions", 
+        };
+
+        const step9Data = {
+            selector: "#step9Element",
+            message: "Now you can see the impact of the EI Nino. Please close this window to explore 2043", 
+        };
+
+        const step10Data = {
+            selector: "#step10Element",
+            message: "Sea water temperatures are rising, simulate this by pouring hot water into a tank, and you'll soon see the results.", 
+        };
+        
+
+        let currentStep = 0;
+        const stepsData = [
+            {
+                selector: '#step1Element',
+                message: 'This timeline help you predict the future impact of human behavior on the Great Barrier Reef.'
+            },
+            {
+                selector: '#step2Element',
+                message: [
+                    {
+                        text: 'These four icons will help you understand how the Great Barrier Reef has been affected. Please flip your wrist up and down to explore.',
+                        color: 'black'
+                    },
+                    {
+                        text: 'It will show the impact on marine life.',
+                        color: 'blue'
+                    }
+                ],
+                image: '/images/animation/TUT-twist.gif'
+            },
+            {
+                selector: '#step3Element',
+                message: [
+                    {
+                        text: 'It will show the impact on seabirds.',
+                        color: 'blue'
+                    }
+                ],
+            },
+            {
+                selector: '#step4Element',
+                message: [
+                    {
+                        text: 'It will show the impact on fisheries.',
+                        color: 'blue'
+                    }
+                ],
+            }, 
+            {
+                selector: '#step5Element',
+                message: [
+                    {
+                        text: 'It will show the impact on human life.',
+                        color: 'blue'
+                    }
+                ],
+            },
+            {
+                selector: '#step6Element',
+                message: [
+                    {
+                        text: 'Developments in transportation lead to higher and higher temperatures',
+                    }
+                ],
+            },
+            {
+                selector: '#step7Element',
+                message: [
+                    {
+                        text: 'These three bubbles will continuously display current marine environmental variable data.',
+                    }
+                ],
+            },
+        ];
+        
+        function showGuide(startStep = 0) {
+            console.log('Inside showGuide, before anything:', currentStep, 'startStep:', startStep);
+            if (startStep !== 0) {
+                currentStep = startStep;
             }
-            if (img.src.endsWith(still)) {
-                img.src = animate;
+
+            const tooltip = document.getElementById('guideTooltip');
+            const tooltipContent = tooltip.querySelector('.tooltip-content');
+            const tooltipImageContainer = tooltip.querySelector('.tooltip-image');
+
+            // Hide the ::after pseudo-element for all steps
+            const allSteps = document.querySelectorAll('.guide-step');
+            allSteps.forEach(el => el.classList.remove('show-after'));
+            console.log(stepsData.length);
+            console.log(currentStep);
+            if (currentStep < stepsData.length) {
+                const stepData = stepsData[currentStep];
+                const stepElement = document.querySelector(stepData.selector);
+                
+                if (!stepElement) {
+                    console.error(`Element with selector ${stepData.selector} not found!`);
+                    return;
+                }
+
+                const rect = stepElement.getBoundingClientRect();
+
+                tooltip.style.top = `${rect.top + rect.height / 2}px`;
+                tooltip.style.left = `${rect.left + rect.width / 2}px`;
+
+                // Clear previous content
+                tooltipContent.innerHTML = '';
+                // Check if message is a string or an array
+                if (typeof stepData.message === 'string') {
+                    tooltipContent.innerHTML = stepData.message;
+                } else if (Array.isArray(stepData.message)) {
+                    stepData.message.forEach(part => {
+                        const p = document.createElement('p');
+                        p.textContent = part.text;
+                        p.style.color = part.color;
+                        tooltipContent.appendChild(p);
+                    });
+                }
+
+                if (stepData.image) {
+                    const imageElement = document.createElement('img');
+                    imageElement.src = stepData.image;
+                    tooltipImageContainer.innerHTML = '';
+                    tooltipImageContainer.appendChild(imageElement);
+                } else {
+                    tooltipImageContainer.innerHTML = '';
+                }
+                
+                tooltip.style.display = 'block';
+                // Show the ::after pseudo-element of the current step
+                stepElement.classList.add('show-after');
+                currentStep++;
             } else {
-                img.src = still;
+                hideGuide();
+                currentStep = 0;
             }
-        });
+        }
+
+        //only show in 2023 map
+        function show2023Guide() {
+          if (!localStorage.getItem('2023GuideShown')) {
+              stepsData.splice(7, 0, step8Data); 
+              currentStep = 7;
+              localStorage.setItem('2023GuideShown', 'true');
+              showGuide(currentStep);
+          }
+        }
+
+        //show pouring water tutorial
+        function showPourGuide() {
+        // Check if step10 is already in the stepsData
+        if (!stepsData.includes(step10Data)) {
+            stepsData.push(step10Data);
+            currentStep = stepsData.length - 1;
+            showGuide(currentStep);
+        }
     }
+
+
+
+        function nextStep() {
+          console.log('Inside nextStep, before updating:', currentStep);
+          if (currentStep === 9 && stepsData.includes(step8Data)) {
+            const step8Index = stepsData.indexOf(step8Data);
+            stepsData.splice(step8Index, 1); // Remove step 8 after showing it
+          }
+          if (currentStep === 10 && stepsData.includes(step9Data)) {
+              const step9Index = stepsData.indexOf(step9Data);
+              stepsData.splice(step9Index, 1); // Remove step 9 after showing it
+
+          }
+          showGuide();
+        }
+
+        function hideGuide() {
+            const tooltip = document.getElementById('guideTooltip');
+            tooltip.style.display = 'none';
+            currentStep = 0;
+        }
+
   </script>
 </html>

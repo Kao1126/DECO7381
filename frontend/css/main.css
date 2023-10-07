@@ -613,14 +613,14 @@ body.interaction {
 }
 
 .btn-control.human {
-    bottom: 59%;
+    bottom: 67%;
     left: 59%;
     background-size: 40px;
     background-image: url(../images/interaction/human-life.png);
 }
 
 .btn-control.market {
-    bottom: 67%;
+    bottom: 59%;
     left: 59%;
     background-size: 43px;
     background-image: url(../images/interaction/fishery.png);
@@ -940,4 +940,197 @@ body.before {
 .bgc-sec a:hover img {
     filter: drop-shadow(0 0 30px hsla(168,90%,45%,1));
 }
+
+.guide-step {
+    margin: 50px;
+    padding: 20px;
+    /* border: 1px solid black; */
+    position: relative;
+}
+
+.guide-tooltip {
+    font-family: sans-serif;
+    position: absolute;
+    border-radius: 8px;
+    background-color: #DEE1EF;
+    padding: 18px;
+    width: 350px;
+    display: none;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.tooltip-content {
+    padding: 8px;
+    line-height: 24px;
+}
+
+.hidden {
+    display: none;
+}
+
+.step-btn {
+    float: right;
+    margin-top: 10px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    background-color: #F48D1C;
+}
+
+.tooltip-image img {
+    width: 10vw;
+}
+
+#step1Element {
+    top: 90px;
+    left: 150px;
+    width: 100px;
+}
+
+#step2Element {
+    top: 180px;
+    left: 600px;
+    width: 250px;
+}
+
+#step3Element {
+    top: 90px;
+    left: 600px;
+    width: 250px;
+}
+
+#step4Element {
+    top: -50px;
+    left: 600px;
+    width: 250px;
+}
+
+#step5Element {
+    top: -220px;
+    left: 600px;
+    width: 250px;
+}
+
+#step6Element {
+    top: 130px;
+    left: 800px;
+    width: 250px;
+}
+
+#step7Element {
+    top: -80px;
+    left: 1100px;
+    width: 250px;
+}
+
+#step8Element {
+    top: -600px;
+    left: 300px;
+    width: 250px;
+    z-index: 1000;
+}
+
+#step9Element {
+    top: -690px;
+    left: 1150px;
+    width: 250px;
+    z-index: 1000;
+}
+
+#step10Element {
+    top: -490px;
+    left: 250px;
+    width: 250px;
+    z-index: 1000;
+}
+
+
+
+
+.guide-step::after {
+    display: none;
+}
+
+.show-after::after {
+    display: block;
+}
+
+#step1Element::after,
+#step2Element::after,
+#step3Element::after,
+#step4Element::after,
+#step5Element::after,
+#step6Element::after,
+#step7Element::after,
+#step8Element::after,
+#step9Element::after,
+#step10Element::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 35px;
+    background-image: url(../images/interaction/hint.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1000;
+}
+
+#step1Element::after {
+    top: -90px;
+    left: -18px;
+}
+
+#step2Element::after {
+    transform: rotate(90deg);
+    top: 85px;
+    left: 350px;
+}
+
+#step3Element::after {
+    transform: rotate(90deg);
+    top: 10px;
+    left: 350px;
+}
+
+#step4Element::after {
+    transform: rotate(90deg);
+    top: -15px;
+    left: 350px;
+}
+
+#step5Element::after {
+    transform: rotate(90deg);
+    top: -15px;
+    left: 350px;
+}
+
+#step6Element::after,
+#step7Element::after  {
+    transform: rotate(90deg);
+    top:  10px;
+    left: 350px;
+}
+
+#step8Element::after {
+    transform: rotate(270deg);
+    top: 10px;
+    left: -88px;
+}
+
+#step9Element::after {
+    transform: rotate(55deg);
+    top: -2px;
+    left: 345px;
+}
+
+#step10Element::after {
+    transform: rotate(90deg);
+    top: -2px;
+    left: 345px;
+}
+
+
 
