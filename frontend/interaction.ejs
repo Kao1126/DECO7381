@@ -337,6 +337,7 @@
       <div class="guide-step" id="step8Element"></div>
       <div class="guide-step" id="step9Element"></div>
       <div class="guide-step" id="step10Element"></div>
+      <div class="guide-step" id="step11Element"></div>
     </div> 
     
     <!-- Tutorial Modal Structure -->
@@ -535,7 +536,7 @@
         var beforeClickModal = document.getElementById("beforeClickModal");
         var proceedButton = document.getElementById("proceedButton");
         var currentTarget;
-        let hasStep10Shown = false;
+        let hasStep11Shown = false;
         // default car icon when loading the page
         document.querySelector('.timeline[data-slider="0"]').style.backgroundImage = 'url("/images/interaction/SVG/progress_car.svg")';
         let currentYear = '2023'; // Start with the initial year
@@ -558,10 +559,10 @@
                   beforeClickModal.style.display = "block";
 
                  // Check if transitioning from 2023 to 2043 and step10 has not been shown
-                if (currentYear === '2043' && !hasStep10Shown) {
+                if (currentYear === '2043' && !hasStep11Shown) {
                     document.querySelector('.guide-tooltip').style.backgroundColor = "white";
                     showPourGuide();
-                    hasStep10Shown = true;  // Set the flag to true
+                    hasStep11Shown = true;  // Set the flag to true
                 }
               } else {
                   // If the transition is not between the specific years, execute the timeline functionality directly
@@ -943,10 +944,10 @@
                   img.src = still;
               }
           });
-          // 檢查是否需要顯示step9
-          if (!stepsData.includes(step9Data)) {
-              stepsData.splice(8, 0, step9Data);
-              currentStep = 8;
+          // 檢查是否需要顯示step10
+          if (!stepsData.includes(step10Data)) {
+              stepsData.splice(9, 0, step10Data);
+              currentStep = 9;
               showGuide(currentStep);
           }
         }
@@ -962,18 +963,18 @@
           }
         }
 
-        const step8Data = {
-            selector: "#step8Element",
-            message: "Explore the impact of the EI Nino on current ocean conditions", 
-        };
-
         const step9Data = {
             selector: "#step9Element",
-            message: "Now you can see the impact of the EI Nino. Please close this window to explore 2043", 
+            message: "Explore the impact of the EI Nino on current ocean conditions", 
         };
 
         const step10Data = {
             selector: "#step10Element",
+            message: "Now you can see the impact of the EI Nino. Please close this window to explore 2043", 
+        };
+
+        const step11Data = {
+            selector: "#step11Element",
             message: "Sea water temperatures are rising, simulate this by pouring hot water into a tank, and you'll soon see the results.", 
         };
         
@@ -1040,6 +1041,16 @@
                         text: 'These three bubbles will continuously display current marine environmental variable data.',
                     }
                 ],
+                
+            },
+            {
+                selector: '#step8Element',
+                message: [
+                    {
+                        text: 'When you open the map, you can see current ocean conditions data.',
+                    }
+                ],
+                
             },
         ];
         
@@ -1108,8 +1119,8 @@
         //only show in 2023 map
         function show2023Guide() {
           if (!localStorage.getItem('2023GuideShown')) {
-              stepsData.splice(7, 0, step8Data); 
-              currentStep = 7;
+              stepsData.splice(8, 0, step9Data); 
+              currentStep = 8;
               localStorage.setItem('2023GuideShown', 'true');
               showGuide(currentStep);
           }
@@ -1118,8 +1129,8 @@
         //show pouring water tutorial
         function showPourGuide() {
         // Check if step10 is already in the stepsData
-        if (!stepsData.includes(step10Data)) {
-            stepsData.push(step10Data);
+        if (!stepsData.includes(step11Data)) {
+            stepsData.push(step11Data);
             currentStep = stepsData.length - 1;
             showGuide(currentStep);
         }
@@ -1129,15 +1140,20 @@
 
         function nextStep() {
           console.log('Inside nextStep, before updating:', currentStep);
-          if (currentStep === 9 && stepsData.includes(step8Data)) {
-            const step8Index = stepsData.indexOf(step8Data);
-            stepsData.splice(step8Index, 1); // Remove step 8 after showing it
-          }
           if (currentStep === 10 && stepsData.includes(step9Data)) {
-              const step9Index = stepsData.indexOf(step9Data);
-              stepsData.splice(step9Index, 1); // Remove step 9 after showing it
+            const step9Index = stepsData.indexOf(step9Data);
+            stepsData.splice(step9Index, 1); // Remove step 9 after showing it
+          }
+          if (currentStep === 11 && stepsData.includes(step10Data)) {
+              const step10Index = stepsData.indexOf(step10Data);
+              stepsData.splice(step10Index, 1); // Remove step 10 after showing it
 
           }
+          // if (currentStep === 12 && stepsData.includes(step11Data)) {
+          //     const step11Index = stepsData.indexOf(step11Data);
+          //     stepsData.splice(step11Index, 1); // Remove step 11 after showing it
+
+          // }
           showGuide();
         }
 

@@ -1027,20 +1027,27 @@ body.before {
 
 #step8Element {
     top: -600px;
-    left: 300px;
+    left: 850px;
     width: 250px;
     z-index: 1000;
 }
 
 #step9Element {
-    top: -690px;
-    left: 1150px;
+    top: -700px;
+    left: 300px;
     width: 250px;
     z-index: 1000;
 }
 
 #step10Element {
-    top: -490px;
+    top: -760px;
+    left: 1120px;
+    width: 250px;
+    z-index: 1000;
+}
+
+#step11Element {
+    top: -600px;
     left: 250px;
     width: 250px;
     z-index: 1000;
@@ -1066,7 +1073,8 @@ body.before {
 #step7Element::after,
 #step8Element::after,
 #step9Element::after,
-#step10Element::after {
+#step10Element::after,
+#step11Element::after {
     content: '';
     position: absolute;
     width: 30px;
@@ -1115,22 +1123,31 @@ body.before {
 }
 
 #step8Element::after {
+    transform: rotate(105deg);
+    top: -5px;
+    left: 350px;
+}
+
+#step9Element::after {
     transform: rotate(270deg);
     top: 10px;
     left: -88px;
 }
 
-#step9Element::after {
+#step10Element::after {
     transform: rotate(55deg);
     top: -2px;
     left: 345px;
 }
 
-#step10Element::after {
+#step11Element::after {
     transform: rotate(90deg);
     top: -2px;
     left: 345px;
 }
 
-
+#togg-gif,
+#proceedButton {
+    /* visibility: hidden; */
+}
 
