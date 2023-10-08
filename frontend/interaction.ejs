@@ -903,12 +903,13 @@
             const humanBehaveImage = document.querySelector('.pouring .behave');
             humanBehaveImage.src = "images/animation/TUT-pour.gif";
             humanBehaveImage.dataset.still = "images/animation/TUT-pour.gif";
+            const paragraphElement = document.querySelector('.pouring h3 p');
+            paragraphElement.innerHTML = "Sea water temperatures are rising, simulate this by pouring hot water into a tank, and you'll soon see the results";
 
             // after three secs, change to certain year's human behave image
             setTimeout(() => {
                 humanBehaveImage.src = beforeClickData.humanBehaveImage;
                 humanBehaveImage.dataset.still = beforeClickData.humanBehaveImage;       
-                const paragraphElement = document.querySelector('.pouring h3 p');
                 paragraphElement.innerHTML = 'The earth is now being destroyed…';
 
             }, 3000);
@@ -1149,11 +1150,6 @@
               stepsData.splice(step10Index, 1); // Remove step 10 after showing it
 
           }
-          // if (currentStep === 12 && stepsData.includes(step11Data)) {
-          //     const step11Index = stepsData.indexOf(step11Data);
-          //     stepsData.splice(step11Index, 1); // Remove step 11 after showing it
-
-          // }
           showGuide();
         }
 

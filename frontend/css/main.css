@@ -1148,6 +1148,6 @@ body.before {
 
 #togg-gif,
 #proceedButton {
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
