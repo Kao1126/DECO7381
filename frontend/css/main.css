@@ -633,9 +633,9 @@ body.interaction {
 
 .info .car {
     position: absolute;
-    width: 7vw;
-    right: 22%;
-    bottom: 14%;
+    width: 12vw;
+    right: 19%;
+    bottom: 10%;
 }
 
 .info .svg-container {
@@ -1015,7 +1015,7 @@ body.before {
 
 #step6Element {
     top: 130px;
-    left: 800px;
+    left: 760px;
     width: 250px;
 }
 

@@ -141,7 +141,7 @@
     </section>
     <!-- marine info -->
     <section class="info">
-      <img class="car" src="/images/interaction/PNG/car.png" alt="" />
+      <img class="car" src="/images/animation/human-behave/hube1.png" alt="" />
       <div class="svg-container svg1">
         <img class="visual" src="/images/visualisation/temperature.png" />
         <h3>temperature</h3>
@@ -585,7 +585,7 @@
             // get year and alter context in the modal
             const year = target.value.toString();
             updateModalContent(year);
-
+            updateCarFeul(year);
             // Reset background image for all .timeline elements
             carIcon.forEach(timeline => {
                 timeline.style.backgroundImage = '';
@@ -837,6 +837,23 @@
 
         };
 
+        const carFeulContent = {
+            '2023': {
+                carFeulImage: "images/animation/human-behave/hube1.png"          
+            },
+            '2043': {
+                carFeulImage: "images/animation/human-behave/hube2.gif"          
+            },
+            '2063': {
+                carFeulImage: "images/animation/human-behave/hube3.gif"          
+            },
+            '2083': {
+                carFeulImage: "images/animation/human-behave/hube4.gif"          
+            },
+
+        };
+
+
 
         function updateModalContent(year) {
             const content = contents[year];
@@ -889,6 +906,22 @@
             clownfishImage.dataset.still = content.clownfishStill;
             clownfishImage.dataset.animate = content.clownfishAnimate;
             
+        }
+
+        function updateCarFeul(year) {
+            const carFeulData = carFeulContent[year];
+            if (!carFeulData) {
+                console.error(`No car fule image found for year ${year}`);
+                return;
+            }
+            const carFeulImage = document.querySelector('.info .car');
+            if (year != '2023') {
+              carFeulImage.style.width = '15vw';
+              carFeulImage.style.right = '18%';
+              carFeulImage.style.bottom = '7%';
+            }
+            carFeulImage.src = carFeulData.carFeulImage;
+
         }
 
         function updateHumanBehavior(year) {
@@ -1056,7 +1089,7 @@
         ];
         
         function showGuide(startStep = 0) {
-            console.log('Inside showGuide, before anything:', currentStep, 'startStep:', startStep);
+            // console.log('Inside showGuide, before anything:', currentStep, 'startStep:', startStep);
             if (startStep !== 0) {
                 currentStep = startStep;
             }
@@ -1068,8 +1101,8 @@
             // Hide the ::after pseudo-element for all steps
             const allSteps = document.querySelectorAll('.guide-step');
             allSteps.forEach(el => el.classList.remove('show-after'));
-            console.log(stepsData.length);
-            console.log(currentStep);
+            // console.log(stepsData.length);
+            // console.log(currentStep);
             if (currentStep < stepsData.length) {
                 const stepData = stepsData[currentStep];
                 const stepElement = document.querySelector(stepData.selector);
@@ -1140,7 +1173,7 @@
 
 
         function nextStep() {
-          console.log('Inside nextStep, before updating:', currentStep);
+          // console.log('Inside nextStep, before updating:', currentStep);
           if (currentStep === 10 && stepsData.includes(step9Data)) {
             const step9Index = stepsData.indexOf(step9Data);
             stepsData.splice(step9Index, 1); // Remove step 9 after showing it
