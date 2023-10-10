@@ -25,7 +25,12 @@
 ### Set up Arduino
 
 
+### Install Node.js
+We should install Node.js to run our project.
+https://nodejs.org/en
+
 ### Get UNO Arduino port
+
 To connect Arduino UNO with our computer, we have to get the UNO port name by running get_port.js.
 
     $ cd DECO7381/backend
@@ -35,7 +40,7 @@ To connect Arduino UNO with our computer, we have to get the UNO port name by ru
 ### Run server.js
 Build the server by running server.js
 
-    $ node server.js --port [port name]
+    $ node server.js --port_name [port name]
 
 
 ## Data Resource
