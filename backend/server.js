@@ -3,6 +3,13 @@ const src = require('./src');
 const path = require("path");
 const app = express();
 
+const { ArgumentParser } = require('argparse');
+const argumentparser = new ArgumentParser({
+  description: 'Argparse example'
+});
+argumentparser.add_argument('-p', '--port_name', { help: 'port name' });
+
+
 const SerialPort = require('serialport');
 const WebSocket = require('ws');
 
@@ -23,7 +30,7 @@ SerialPort.SerialPort.list()
     console.error('Error listing serial ports:', error);
   });
 
-const port = new SerialPort.SerialPort({ path: "/dev/tty.usbmodem101", baudRate: 9600 })
+const port = new SerialPort.SerialPort({ path: argumentparser.parse_args()['port_name'], baudRate: 9600 })
 
 const parser = new ReadlineParser();
 port.pipe(parser);
