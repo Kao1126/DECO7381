@@ -49,4 +49,9 @@ Build the server by running server.js and typing the port name obtained from pre
 
 ![alt text](./readme_img/run_server.png)
 
+### Access to our project
+Typing the following URL into your browser:
+
+http://localhost:8080/index
+
 ## Data Resource
