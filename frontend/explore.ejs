@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="leaflet/leaflet.css" />
+    <script src="leaflet/leaflet.js"></script>
+    <title>Explore</title>
+</head>
+<body class="explore">
+    <section class="map-container">
+        <div id="map"></div>
+        <div class="mask"></div>
+    </section>
+    <section class="explore-loc">
+        <div class="svg-container svg1" id="svg1" draggable="true" ondragstart="drag(event)">
+            <img class="loc" src="/images/explore/SVG/Park1/park1.svg" alt="park1"/>
+            <div class="overlay-text">Tasman Fracture Marine Park</div>
+        </div>
+        <div class="svg-container svg2" id="svg2" draggable="true" ondragstart="drag(event)">
+            <img class="loc" src="/images/explore/SVG/Park2/park2.svg" alt="park2"/>
+            <div class="overlay-text">Oceanic Shoals Marine Park</div>
+        </div>
+        <div class="svg-container svg3" id="svg3" draggable="true" ondragstart="drag(event)">
+            <img class="loc" src="/images/explore/SVG/Park3/park3.svg" alt="park3"/>
+            <div class="overlay-text">Perth Canyon Marine Park</div>
+        </div>
+        <div class="svg-container svg4" id="svg4" draggable="true" ondragstart="drag(event)">
+            <img class="loc" src="/images/explore/SVG/Park5/park5.svg" alt="park5"/>
+            <div class="overlay-text">Gascoyne Marine Park</div>
+        </div>
+        <!-- <div class="svg-container svg5" id="svg5" draggable="true" ondragstart="drag(event)">
+            <a href="/data_visual">
+                <img
+                    class="loc" src="/images/explore/SVG/Park4/park4.svg" alt="park4"/>
+                <div class="overlay-text">Coral Sea Marine Park</div>
+            </a>
+        </div> -->
+        <div class="svg-container svg5" id="svg5" draggable="true" ondragstart="drag(event)"/>
+            <img class="loc" src="/images/explore/SVG/Park4/park4.svg" alt="park4">
+            <div class="overlay-text">Coral Sea Marine Park</div>
+        </div>
+        
+    </section>
+    <a href="/data_visual">
+        <img class="btn" src="/images/explore/SVG/ball.svg" alt="" ondrop="drop(event)" ondragover="allowDrop(event)"/>
+    </a>
+</body>
+<script>
+    // Create a map centered on Australia
+    var map = L.map('map').setView([-25.000, 133.000], 4);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attributionControl: false
+    }).addTo(map);
+
+    var geoJSONData = [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Oceanic Shoals Marine Park",
+                "color": "green"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [126.0667, -11.4889],
+                        [127.5271, -11.2386],
+                        [128.4597, -10.3333],
+                        [130.4333, -10.3333],
+                        [130.9833, -9.7733],
+                        [131.2167, -9.7380],
+                        [130.5167, -10.6000],
+                        [130.1000, -10.6000],
+                        [130.1000, -11.1133],
+                        [129.5833, -11.7500],
+                        [128.1000, -11.7500],
+                        [128.1000, -12.7000],
+                        [126.1000, -12.7000],
+                        [126.0667, -12.7000],
+                        [126.0667, -11.4889]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Gascoyne Marine Park",
+                "color": "red"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [111.0000, -20.7000],
+                        [113.7500, -20.7000],
+                        [113.7500, -21.6654],
+                        [114.0013, -21.6654],
+                        [113.3333, -24.0313],
+                        [113.3333, -22.6654],
+                        [110.0000, -22.6654],
+                        [111.0000, -20.7000]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Tasman Facture Marine Park",
+                "color": "blue"
+
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [144.0000, -43.4000],
+                        [145.0847, -43.4000],
+                        [145.0847, -43.4153],
+                        [145.2514, -43.4153],
+                        [145.2514, -43.5819],
+                        [145.3347, -43.5819],
+                        [145.3347, -43.7486],
+                        [146.6000, -43.7486],
+                        [145.9583, -44.6000],
+                        [145.5967, -44.6000],
+                        [145.3500, -44.9333],
+                        [145.3500, -45.7500],
+                        [144.6667, -45.7500],
+                        [145.0317, -47.0000],
+                        [144.0000, -46.7500],
+                        [144.0000, -43.4000]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Coral Sea Marine Park",
+                "color": "pink"
+
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [144.0000, -10],
+                        [144.0000, -11.6833],
+                        [144.0000, -12.300],
+                        [145.0000, -12.3000],
+                        [145.6631, -12.3000],
+                        [146.0833, -17.0833],
+                        [153.3583, -21.3000],
+                        [154.0000, -24.5000],
+                        [158.0833, -24.5000],
+                        [156.0833, -19.2866],
+                        [158.0833, -16.2833],
+                        [155.0833, -14.0000],
+                        [144.0000, -10.6833]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Perth Canyon Marine Park",
+                "color": "#00aaaf"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [114.0000, -31.7000],
+                        [114.7500, -31.7000],
+                        [114.9000, -31.9000],
+                        [115.2500, -31.9000],
+                        [115.2500, -32.1000],
+                        [115.1000, -32.1000],
+                        [114.8500, -32.4000],
+                        [114.0000, -31.7000]
+                    ]
+                ]
+            }
+        },
+
+
+    ];
+
+    function style(feature) {
+        return {
+            radius: 8,
+            fillColor: feature.properties.color,
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            fillOpacity: 0.7
+        };
+    }
+    function onEachFeature(feature, layer) {
+        if (feature.properties && feature.properties.name) {
+            layer.bindPopup('<div class="popup-content">' + feature.properties.name + '</div>');
+        }
+    }
+
+    // Create a GeoJSON layer and add it to the map
+    var geoJSONLayer = L.geoJSON(geoJSONData, {
+        style: style,
+        onEachFeature: onEachFeature
+    }).addTo(map);
+
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var draggedElement = document.getElementById(data);
+
+        // Check if draggedElement exists
+        if (!draggedElement) {
+            console.error("Dragged element not found:", data);
+            return;
+        }
+
+        // Navigate to the desired URL
+        window.location.href = "/data_visual";
+    }
+
+
+
+</script>
+</html>

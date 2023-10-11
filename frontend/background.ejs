@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Echoes of the Ocean</title>
+</head>
+<body class="background">
+    <div id="player" class="bgc-sec">
+    </div>
+    <div class="process-sec" style="display: none;">
+        <div class="contentAfterVideo" style="display: none;">
+            <a href="/interaction">
+                <img src="/images/homepage/submarine.png" alt="submarine">
+            </a> 
+        </div>
+    </div>
+
+</body>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+    function onYouTubeIframeAPIReady() {
+    var player = new YT.Player('player', {
+        height: '787',
+        width: '1440',
+        videoId: 'UIFDf8l6h0U',
+        playerVars: {
+            'autoplay': 1, 
+            'controls': 1, 
+            'showinfo': 0,
+            'rel': 0,
+            'modestbranding': 1
+        },
+        events: {
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.ENDED) {
+        document.getElementById('player').style.display = 'none';
+        window.location.href = "/before-interaction";
+    }
+}
+
+</script>
+</html>

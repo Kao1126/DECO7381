@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/leaflet/leaflet.css" />
+    <script src="/leaflet/leaflet.js"></script>
+    <title>Echoes of the Ocean</title>
+  </head>
+  <body class="interaction">
+    <section class="inter-sec">
+      <div class="main-controls">
+        <!-- <input class="timeline" type="button" data-slider="0" value="2003"> -->
+        <input class="timeline" type="button" data-slider="0" value="2023" />
+        <input class="timeline" type="button" data-slider="1" value="2043" />
+        <input class="timeline" type="button" data-slider="2" value="2063" />
+        <input class="timeline" type="button" data-slider="3" value="2083" />
+      </div>
+      <div class="progress">
+        <img src="/images/interaction/SVG/progress_car.svg" alt="" />
+      </div>
+      <!-- 幻燈片切換尚 -->
+      <section class="carousel slider-group">
+        <h3 class="year">The year of 2023</h3>
+        <!-- <div class="slider-wrapper active" id="slider0">
+                    <div class="slider">
+                        <div class="slide">
+                            <img src="/images/scene/Scene I.gif" >
+                        </div>
+                    </div>
+                </div> -->
+        <div class="slider-wrapper active" id="slider0">
+          <div class="slider">
+            <div class="slide">
+              <img src="/images/scene/Scene I.gif" />
+            </div>
+          </div>
+        </div>
+        <div class="slider-wrapper" id="slider1">
+          <div class="slider">
+            <div class="slide">
+              <img src="/images/scene/On-Scene-II/Human1.gif" />
+            </div>
+            <div class="slide">
+              <img src="/images/scene/On-Scene-II/Fish1.gif" />
+            </div>
+            <div class="slide">
+              <img src="/images/scene/On-Scene-II/Bird1.gif" ">
+            </div>
+            <div class="slide">
+              <img src="/images/scene/Scene-II.gif" />
+            </div>
+            <div class="slide">
+              <img src="/images/scene/Anime-I.gif" />
+            </div>
+          </div>
+        </div>
+        <div class="slider-wrapper" id="slider2">
+          <div class="slider">
+            <div class="slide">
+              <img src="/images/scene/On-Scene-III/Human2.gif" />
+            </div>
+            <div class="slide">
+              <img src="/images/scene/On-Scene-III/Fish2.gif" />
+            </div>
+            <div class="slide">
+              <img src="/images/scene/On-Scene-III/Bird2.gif" />
+            </div>
+            <div class="slide">
+              <img src="/images/scene/Scene-III.gif" />
+            </div>
+            <div class="slide">
+              <img src="/images/scene/Anime-II.gif" />
+            </div>
+          </div>
+        </div>
+        <div class="slider-wrapper" id="slider3">
+          <div class="slider">
+            <div class="slide">
+              <img src="/images/scene/On-Scene-IV/Human3.gif" />
+            </div>
+            <div class="slide">
+              <img src="/images/scene/On-Scene-IV/Fish3.gif" />
+            </div>
+            <div class="slide">
+              <img src="/images/scene/On-Scene-IV/Bird3.gif" ">
+            </div>
+            <div class="slide">
+              <img src="/images/scene/Scene-IV.gif" />
+            </div>
+            <div class="slide">
+              <img src="/images/scene/Anime-III.gif" />
+            </div>
+          </div>
+        </div>
+        <!-- 按鈕會控制t跟影片 -->
+        <div class="controls">
+          <input
+            class="human btn-control"
+            type="button"
+            data-target="0"
+          />
+          <input
+            class="market btn-control"
+            type="button"
+            data-target="1"
+          />
+          <input
+            class="species btn-control"
+            type="button"
+            data-target="2"
+          />
+          <input
+            class="ocean btn-control"
+            type="button"
+            data-target="3"
+          />
+          <input
+            style="display: none"
+            class="current btn-control"
+            type="button"
+            value="current"
+            data-target="4"
+          />
+        </div>
+      </section>
+      <!-- 幻燈片切換  -->
+      <a class="btn" href="/data_visual">BACK</a>
+      <!-- park title -->
+      <div class="svg-container svg5">
+        <img
+          class="marker"
+          src="/images/visualisation/marker_bubble.png"
+          alt=""
+        />
+        <h2>The Great Barrier Reef</h2>
+      </div>
+      <!-- park title  -->
+    </section>
+    <!-- marine info -->
+    <section class="info">
+      <img class="car" src="/images/animation/human-behave/hube1.png" alt="" />
+      <div class="svg-container svg1">
+        <img class="visual" src="/images/visualisation/temperature.png" />
+        <h3>temperature</h3>
+        <div class="overlay-text tem">26.3</div>
+      </div>
+      <div class="svg-container svg2">
+        <img class="visual" src="/images/visualisation/sin_bubble.png" />
+        <h3>ph</h3>
+        <div class="overlay-text ph">8.2</div>
+      </div>
+      <div class="svg-container svg3">
+        <img class="visual" src="/images/visualisation/sin_bubble.png" />
+        <h3>co2</h3>
+        <div class="overlay-text co2">1.5</div>
+      </div>
+    </section>
+    <!-- marine info -->
+    <!-- 地圖區塊 -->
+    <section id="openMap" class="map-container">
+      <div id="map"></div>
+      <div class="mask"></div>
+    </section>
+    <!-- 地圖區塊 -->
+    <!-- Trigger/Open The Modal -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">
+          <img src="/images/map/close.png" alt="" />
+        </span>
+        <a href="#" class="elNino" id="elNino">
+          <img src="images/animation/TUT-blow.gif" alt="">
+        </a>
+        <h2 style="display: inline-block;">Unveriling El Nino's Mysteries</h2>
+        <div class="item">
+          <img class="thermometer" 
+            src="/images/map/Thermometer/thermometer-I.png" 
+            data-still="/images/map/Thermometer/thermometer-I.png"
+            data-animate="/images/map/Thermometer/thermometer-I-blow.gif"  
+            alt=""
+          >
+        </div>
+        <div class="status">
+          <div class="item ocean-temperature">
+            <img
+              src="images/map/Temperature/2023/tem-I.png"
+              data-still="images/map/Temperature/2023/tem-I.png"
+              data-animate="images/map/Temperature/2023/tem-I-blow.gif"
+              alt=""
+            />
+            <h3>Ocean temperature</h3>
+          </div>
+          <div class="item animal-migration">
+            <img
+              src="images/map/Species/2023/species-I.png"
+              data-still="images/map/Species/2023/species-I.png"
+              data-animate="images/map/Species/2023/species-I-blow.gif"
+              alt=""
+            />
+            <h3>Marine Animal Migration</h3>
+          </div>
+          <div class="item corall-bleaching">
+            <img
+              src="images/map/coralbleach/normal/normal_1.png"
+              data-still="images/map/coralbleach/normal/normal_1.png"
+              data-animate="images/map/coralbleach/bleaching/bleaching_1.png"
+              alt=""
+            />
+            <h3>Coral Bleaching</h3>
+          </div>
+        </div>
+        <!-- <button style="display: none;" id="elNino">El Nino</button> -->
+        <button id="togg-gif" onclick="toggleMapGifs()">Toggle GIFs</button>
+        <div class="figure">
+          <div class="health item">
+            <img class="health-img" 
+              src="images/map/health.png" 
+              data-still="images/map/health.png"
+              data-animate="images/map/earth/earth1.gif"
+              alt="" 
+            />
+          </div>
+          <div class="species">
+            <div class="num dophin-num">
+              <img src="images/map/dolphin.png" alt="" />
+              <div class="block item">
+                <h4>Doplin</h4>
+                <img class="count"
+                  src="images/map/Number/2023/Dophin-I.png"
+                  data-still="images/map/Number/2023/Dophin-I.png"
+                  data-animate="images/map/Number/2023/Dophin-I-blow.gif"
+                  alt=""
+                >
+              </div>
+            </div>
+            <div class="num whales_num">
+              <img src="images/map/whales.png" alt="" />
+              <div class="block item">
+                <h4>Whales</h4>
+                <img class="count"
+                  src="images/map/Number/2023/Whale-I.png"
+                  data-still="images/map/Number/2023/Whale-I.png"
+                  data-animate="images/map/Number/2023/Whale-I-blow.gif"
+                  alt=""
+                >
+              </div>
+            </div>
+            <div class="num dugong-num">
+              <img src="images/map/dogong.png" alt="" />
+              <div class="block item">
+                <h4>Dugong</h4>
+                <img class="count"
+                  src="images/map/Number/2023/Dugong-I.png"
+                  data-still="images/map/Number/2023/Dugong-I.png"
+                  data-animate="images/map/Number/2023/Dugong-I-blow.gif"
+                  alt=""
+                >
+              </div>
+            </div>
+            <div class="num clownfish-num">
+              <img src="images/map/nemo.png" alt="" />
+              <div class="block item">
+                <h4>Clownfish</h4>
+                <img class="count"
+                  src="images/map/Number/2023/Clownfish-I.png"
+                  data-still="images/map/Number/2023/Clownfish-I.png"
+                  data-animate="images/map/Number/2023/Clownfish-I-blow.gif"
+                  alt=""
+                >
+              </div>
+            </div>
+          </div>
+          <div class="bleaching">
+            <div class="coral">
+              <img src="images/map/bleaching-none.png" alt="" />
+              <div class="block">
+                <h4>No Bleaching</h4>
+              </div>
+            </div>
+            <div class="coral">
+              <img src="images/map/bleaching.png" alt="" />
+              <div class="block">
+                <h4>Bleaching</h4>
+              </div>
+            </div>
+            <div class="coral">
+              <img src="images/map/mederate.png" alt="" />
+              <div class="block">
+                <h4>Moderate</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- give the hint when open modal -->
+    <div id="hintMask" class="hint-mask hidden">
+      <div class="hint-content">
+        <h3>
+          Please blow into the device to explore the El Niño
+        </h3>
+        <img src="images/animation/TUT-blow.gif" alt="">
+      </div>
+    </div>
+    <!-- The Modal for hint for pouring the water -->
+    <div id="beforeClickModal" class="modal">
+      <div class="modal-content pouring">
+        <h3>
+          <p>Sea water temperatures are rising,<br>
+          simulate this by pouring hot water into a tank, and you'll soon see the results.</p>
+        </h3>
+        <div class="wrapper">
+          <img class="behave"
+            src="images/animation/TUT-pour.gif"
+            data-still="images/animation/TUT-pour.gif"
+            alt=""
+          >
+        </div>
+        <p></p>
+        <!-- proceed the timeline -->
+        <button id="proceedButton">Proceed</button>
+      </div>
+    </div>
+    <div id="myContent">
+      <div class="guide-step" id="step1Element"></div>
+      <div class="guide-step" id="step2Element"></div>
+      <div class="guide-step" id="step3Element"></div>
+      <div class="guide-step" id="step4Element"></div>
+      <div class="guide-step" id="step5Element"></div>
+      <div class="guide-step" id="step6Element"></div>
+      <div class="guide-step" id="step7Element"></div>
+      <div class="guide-step" id="step8Element"></div>
+      <div class="guide-step" id="step9Element"></div>
+      <div class="guide-step" id="step10Element"></div>
+      <div class="guide-step" id="step11Element"></div>
+    </div> 
+    
+    <!-- Tutorial Modal Structure -->
+    <div class="guide-tooltip hidden" id="guideTooltip">
+        <div class="tooltip-content"></div>
+        <div class="tooltip-image"></div>
+        <button class="step-btn" onclick="nextStep()">Got it</button>
+    </div>
+
+
+    
+
+  </body>
+  <script>
+
+        var reef = <%-JSON.stringify(all_reef)%>
+        var reef_bleaching = <%-JSON.stringify(reef_bleaching)%>
+        var all_bleaching = []
+        <% reef_bleaching_data.forEach((item, index) => { %>
+                all_bleaching.push(<%-JSON.stringify(item) %>)
+        <% }); %>
+
+        var trigger = false;
+
+        var socket = new WebSocket('ws://localhost:3000');
+        socket.addEventListener('message', (event) => {
+              console.log(event.data)
+              if(event.data > 575 && trigger == true){
+                toggleMapGifs()
+                trigger = false
+            }
+          });
+
+
+        const render_lists = {
+            '2023': [2, 1, 1, 1],
+            '2043': [3, 2, 1, 1],
+            '2063': [3, 3, 2, 1],
+            '2083': [3, 3, 3, 2]
+        }
+
+        const temp = {
+            '2023': 26.3,
+            '2043': 28.3,
+            '2063': 30.3,
+            '2083': 35.3
+        }
+
+        const CO2 = {
+            '2023': 1.5,
+            '2043': 1.6,
+            '2063': 1.7,
+            '2083': 1.8
+        }
+
+        const PH = {
+            '2023': 8.2,
+            '2043': 8.3,
+            '2063': 8.4,
+            '2083': 8.7
+        }
+
+
+        // Create a map centered on Australia
+        var map = L.map('map').setView([-16.000, 150.000], 5);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attributionControl: false
+        }).addTo(map);
+        var customIcon = L.icon({
+            iconUrl: '/images/visualisation/marker_bubble.png',
+            iconSize: [50, 50],
+            iconAnchor: [22, 10],
+        });
+        L.marker([-16.000, 150.000], { icon: customIcon }).addTo(map);
+
+
+        function style(feature) {
+            return {
+                radius: 8,
+                fillColor: feature.properties.color,
+                weight: 2,
+                opacity: 1,
+                color: 'pink',
+                fillOpacity: 0.7
+            };
+        }
+        function onEachFeature(feature, layer) {
+            if (feature.properties && feature.properties.name) {
+                layer.bindPopup('<div class="popup-content">' + feature.properties.name + '</div>');
+            }
+        }
+
+        var normal_style = {
+            radius: 2,
+            fillColor: "#3EC70B",
+            color: "#3EC70B",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+        };
+        var moderate_style = {
+            radius: 2,
+            fillColor: "#F78864",
+            color: "#F78864",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+        };
+
+        var bleaching_style = {
+            radius: 2,
+            fillColor: "#ED1C24",
+            color: "#ED1C24",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+        };
+
+
+        function render_reef(data, render_style){
+            L.geoJSON(data, {
+            pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, render_style);
+            }
+            }).addTo(map);
+        }
+
+        function render_map(data, enable_list) {
+
+            for(let i=0; i<4; i++){
+
+                if(enable_list[i]===1){
+                    render_reef(all_bleaching[i], normal_style)
+                }
+                if(enable_list[i]===2){
+                    render_reef(all_bleaching[i], moderate_style)
+                }
+                if(enable_list[i]===3){
+                    render_reef(all_bleaching[i], bleaching_style)
+                }
+
+            }
+        }
+        render_map(all_bleaching, render_lists['2023'])
+
+
+        // for reef data
+        // var geoJSONLayer = L.geoJSON(reef, {
+        //     style: style,
+        //     onEachFeature: onEachFeature
+        // }).addTo(map);
+
+
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        // Get the button that opens the modal
+        var btn = document.getElementById("openMap");
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+         
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+          modal.style.display = "block";
+                 // From blowing system
+          trigger = true;
+          show2023Guide();
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // mainControls control timeline
+        const mainControls = document.querySelector('.main-controls');
+        const sliderWrappers = document.querySelectorAll('.slider-wrapper');
+        const carIcon = document.querySelectorAll('.timeline');
+
+        // Function to set the last slide to the bottom of the given slider
+        function setLastSlideToBottom(slider) {
+            const slides = slider.querySelectorAll('.slide');
+            if (slides && slides.length > 0) {
+                const lastSlideOffsetTop = slides[slides.length - 1].offsetTop;
+                slider.scrollTop = lastSlideOffsetTop;
+            }
+        }
+
+        // Reference to modal and proceed button
+        var beforeClickModal = document.getElementById("beforeClickModal");
+        var proceedButton = document.getElementById("proceedButton");
+        var currentTarget;
+        let hasStep11Shown = false;
+        // default car icon when loading the page
+        document.querySelector('.timeline[data-slider="0"]').style.backgroundImage = 'url("/images/interaction/SVG/progress_car.svg")';
+        let currentYear = '2023'; // Start with the initial year
+        mainControls.addEventListener('click', function(e) {
+            if (e.target.tagName === 'INPUT' && e.target.type === 'button') {
+              removeActiveBtnClass();
+              // Store the clicked input element
+              const targetYear = e.target.value.toString();
+              
+              // Check the transition between specific years
+              if (
+                  (currentYear === '2023' && targetYear === '2043') ||
+                  (currentYear === '2043' && targetYear === '2063') ||
+                  (currentYear === '2063' && targetYear === '2083')
+              ) {
+                  currentYear = targetYear;
+                  currentTarget = e.target;
+                  updateHumanBehavior(targetYear);
+                  // Show the modal
+                  beforeClickModal.style.display = "block";
+
+                 // Check if transitioning from 2023 to 2043 and step10 has not been shown
+                if (currentYear === '2043' && !hasStep11Shown) {
+                    document.querySelector('.guide-tooltip').style.backgroundColor = "white";
+                    showPourGuide();
+                    hasStep11Shown = true;  // Set the flag to true
+                }
+              } else {
+                  // If the transition is not between the specific years, execute the timeline functionality directly
+                  currentYear = targetYear;
+                  executeTimelineFunctionality(e.target);
+              }
+            }
+        });
+
+        proceedButton.onclick = function() {
+            // Hide the modal
+            beforeClickModal.style.display = "none";
+            // Execute timeline functionality with the stored currentTarget
+            executeTimelineFunctionality(currentTarget);
+        }
+
+        function executeTimelineFunctionality(target) {
+            if (!target) return; // If target is not set, exit the function
+            const targetSlider = target.getAttribute('data-slider');
+            // get year and alter context in the modal
+            const year = target.value.toString();
+            updateModalContent(year);
+            updateCarFeul(year);
+            // Reset background image for all .timeline elements
+            carIcon.forEach(timeline => {
+                timeline.style.backgroundImage = '';
+            });
+
+            // default gif to still status
+            const items = document.querySelectorAll('.item img');
+            items.forEach(img => {
+                const still = img.getAttribute('data-still');
+                img.src = still;
+            });
+
+            sliderWrappers.forEach((slider, idx) => {
+                if (idx == targetSlider) {
+                    slider.classList.add('active');
+                    let title = document.querySelector('.year');
+                    title.innerHTML = `The Year of ${target.value}`;
+                    // Set a background image to the clicked .timeline element
+                    target.style.backgroundImage = 'url("/images/interaction/SVG/progress_car.svg")';
+                    setLastSlideToBottom(slider);
+
+
+                    // render map
+                    render_map(all_bleaching, render_lists[target.value])
+
+                    let temp_html = document.querySelector('.tem');
+                    temp_html.innerHTML = `${temp[target.value]}`;
+
+                    let ph_html = document.querySelector('.ph');
+                    ph_html.innerHTML = `${PH[target.value]}`;
+
+                    let co2_html = document.querySelector('.co2');
+                    co2_html.innerHTML = `${CO2[target.value]}`;
+
+                } else {
+                    slider.classList.remove('active');
+                }
+            });
+        }
+
+
+        // Ensure the first slider
+        if (sliderWrappers.length > 0) {
+            setLastSlideToBottom(sliderWrappers[0]);
+        }
+
+        // shared btn for underwater to market
+        const globalControls = document.querySelector('.controls');
+        globalControls.addEventListener('click', function(e) {
+            if (e.target.tagName === 'INPUT' && e.target.type === 'button') {
+                removeActiveBtnClass();
+                e.target.classList.add('active-btn');
+                const activeSliderWrapper = document.querySelector('.slider-wrapper.active');
+                const slides = activeSliderWrapper.querySelectorAll('.slide');
+                const targetOffsetTop = slides[e.target.getAttribute('data-target')].offsetTop;
+                activeSliderWrapper.scrollTo({
+                    top: targetOffsetTop,
+                    behavior: "smooth"
+                });
+            }
+        });
+
+        function removeActiveBtnClass() {
+            const allButtons = document.querySelectorAll('.btn-control');
+            allButtons.forEach(button => {
+                button.classList.remove('active-btn');
+            });
+        }
+
+
+        // Sensor Interaction - Timeline
+        document.addEventListener('keydown', function(e) {
+                if (e.key === 'd' || e.keyCode === 68) {
+                    moveToNextSlider();
+                    }
+                if (e.key === 'a' || e.keyCode === 65) {
+                    moveToPreviousSlider();
+                    }
+                if (e.key === 'f' || e.keyCode === 70) {
+                    proceedNext();
+                }
+            });
+
+        function moveToNextSlider() {
+            // Find active timeline button
+            const activeButton = document.querySelector('.timeline[style*="progress_car.svg"]');
+
+            if (activeButton) {
+                // Find the next timeline button
+                const nextButton = activeButton.nextElementSibling;
+
+                if (nextButton && nextButton.classList.contains('timeline')) {
+                    // Trigger a click on the next timeline button to update content
+                    nextButton.click();
+                }
+            }
+        }
+
+        function moveToPreviousSlider() {
+            // Find active timeline button
+            const activeButton = document.querySelector('.timeline[style*="progress_car.svg"]');
+
+            if (activeButton) {
+                // Find the previous timeline button
+                const previousButton = activeButton.previousElementSibling;
+
+                if (previousButton && previousButton.classList.contains('timeline')) {
+                    // Trigger a click on the previous timeline button to update content
+                        previousButton.click();
+                    }
+                }
+        }
+
+        function proceedNext() {
+            const proceedButtonDom = document.querySelector('#proceedButton')
+            if (proceedButtonDom) {
+                proceedButtonDom.click();
+                console.log('proceedButton clicked');
+            }
+            else {
+                console.log('proceedButton not found');
+            }
+
+        }
+
+        // Sensor Interaction - Sense
+        document.addEventListener('keydown', function(e) {
+        // Listen for 'w' key
+        if (e.key === 'w' || e.keyCode === 87) {
+            clickButtonByOffset(-1);  // Next sense
+            }
+
+        // Listen for 's' key
+        if (e.key === 's' || e.keyCode === 83) {
+            clickButtonByOffset(1);   // Previous sense
+            }
+        });
+
+        let currentDataTarget = 3;  // Set default data-target value to 3
+
+        function clickButtonByOffset(offset) {
+            const buttons = document.querySelectorAll('.controls .btn-control:not([style*="display: none"])');
+
+            currentDataTarget += offset;
+            currentDataTarget = Math.max(0, Math.min(currentDataTarget, buttons.length - 1));  // Ensure value is within bounds
+
+            const targetButton = document.querySelector(`.controls .btn-control[data-target="${currentDataTarget}"]`);
+            if (targetButton) {
+                targetButton.click();
+            }
+        }
+
+        const contents = {
+            '2023': { 
+                thermStill: "/images/map/Thermometer/thermometer-I.png",
+                thermAnimate: "/images/map/Thermometer/thermometer-I-blow.gif" ,
+                oceanStill: 'images/map/Temperature/2023/tem-I.png',
+                oceanAnimate: 'images/map/Temperature/2023/tem-I-blow.gif',
+                migrationStill: 'images/map/Species/2023/species-I.png',
+                migrationAnimate: 'images/map/Species/2023/species-I-blow.gif',
+                coralStill: "images/map/coralbleach/normal/normal_1.png",
+                coralAnimate: "images/map/coralbleach/bleaching/bleaching_1.png",
+                healthStill: 'images/map/health.png',
+                healthAnimate: "images/map/earth/earth1.gif",
+                dolphinStill: "images/map/Number/2023/Dophin-I.png",
+                dolphinAnimate: "images/map/Number/2023/Dophin-I-blow.gif",
+                whalesStill: "images/map/Number/2023/Whale-I.png",
+                whalesAnimate: "images/map/Number/2023/Whale-I-blow.gif",
+                dugongStill: "images/map/Number/2023/Dugong-I.png",
+                dugongAnimate: "images/map/Number/2023/Dugong-I-blow.gif",
+                clownfishStill: "images/map/Number/2023/Clownfish-I.png",
+                clownfishAnimate: "images/map/Number/2023/Clownfish-I-blow.gif",
+            },
+            '2043': {
+                thermStill: "/images/map/Thermometer/thermometer-II.png",
+                thermAnimate: "/images/map/Thermometer/thermometer-II-blow.gif" ,
+                oceanStill: 'images/map/Temperature/2043/tem-II.gif',
+                oceanAnimate: 'images/map/Temperature/2043/tem-II-blow.gif',
+                migrationStill: 'images/map/Species/2043/species-II.png',
+                migrationAnimate: 'images/map/Species/2043/species-II-blow.gif',
+                coralStill: "images/map/coralbleach/normal/normal_2.png",
+                coralAnimate: "images/map/coralbleach/bleaching/bleaching_2.png",
+                healthStill: 'images/map/earth/earth1.gif',
+                healthAnimate: "images/map/earth/earth2.gif",
+                dolphinStill: "images/map/Number/2043/Dophin-II.png",
+                dolphinAnimate: "images/map/Number/2043/Dophin-II-blow.gif",
+                whalesStill: "images/map/Number/2043/Whale-II.png",
+                whalesAnimate: "images/map/Number/2043/Whale-II-blow.gif",
+                dugongStill: "images/map/Number/2043/Dugong-II.png",
+                dugongAnimate: "images/map/Number/2043/Dugong-II-blow.gif",
+                clownfishStill: "images/map/Number/2043/Clownfish-II.png",
+                clownfishAnimate: "images/map/Number/2043/Clownfish-II-blow.gif",
+            },
+            '2063': {
+                thermStill: "/images/map/Thermometer/thermometer-III.png",
+                thermAnimate: "/images/map/Thermometer/thermometer-III-blow.gif" ,
+                oceanStill: 'images/map/Temperature/2063/tem-III.gif',
+                oceanAnimate: 'images/map/Temperature/2063/tem-III-blow.gif',
+                migrationStill: 'images/map/Species/2063/species-III.png',
+                migrationAnimate: 'images/map/Species/2063/species-III-blow.gif',
+                coralStill: "images/map/coralbleach/normal/normal_3.png",
+                coralAnimate: "images/map/coralbleach/bleaching/bleaching_3.png",
+                healthStill: 'images/map/earth/earth2.gif',
+                healthAnimate: "images/map/earth/earth3.gif",
+                dolphinStill: "images/map/Number/2063/Dophin-III.png",
+                dolphinAnimate: "images/map/Number/2063/Dophin-III-blow.gif",
+                whalesStill: "images/map/Number/2063/Whale-III.png",
+                whalesAnimate: "images/map/Number/2063/Whale-III-blow.gif",
+                dugongStill: "images/map/Number/2063/Dugong-III.png",
+                dugongAnimate: "images/map/Number/2063/Dugong-III-blow.gif",
+                clownfishStill: "images/map/Number/2063/Clownfish-III.png",
+                clownfishAnimate: "images/map/Number/2063/Clownfish-III-blow.gif",
+            },
+            '2083': {
+                thermStill: "/images/map/Thermometer/thermometer-IV.png",
+                thermAnimate: "/images/map/Thermometer/thermometer-IV-blow.gif" ,
+                oceanStill: 'images/map/Temperature/2083/tem-IV.gif',
+                oceanAnimate: 'images/map/Temperature/2083/tem-IV-blow.gif',
+                migrationStill: 'images/map/Species/2083/species-IV.png',
+                migrationAnimate: 'images/map/Species/2083/species-IV-blow.gif',
+                coralStill: "images/map/coralbleach/normal/normal_4.png",
+                coralAnimate: "images/map/coralbleach/bleaching/bleaching_4.png",
+                healthStill: 'images/map/earth/earth3.gif',
+                healthAnimate: "images/map/earth/earth4.gif",
+                dolphinStill: "images/map/Number/2083/Dophin-IV.png",
+                dolphinAnimate: "images/map/Number/2083/Dophin-IV-blow.gif",
+                whalesStill: "images/map/Number/2083/Whale-IV.png",
+                whalesAnimate: "images/map/Number/2083/Whale-IV-blow.gif",
+                dugongStill: "images/map/Number/2083/Dugong-IV.png",
+                dugongAnimate: "images/map/Number/2083/Dugong-IV-blow.gif",
+                clownfishStill: "images/map/Number/2083/Clownfish-IV.png",
+                clownfishAnimate: "images/map/Number/2083/Clownfish-IV-blow.gif",
+            },
+        };
+
+        const beforeClickContent = {
+            '2023': {
+                humanBehaveImage: "images/animation/human-behave/loading1.gif"          
+            },
+            '2043': {
+                humanBehaveImage: "images/animation/human-behave/loading1.gif"          
+            },
+            '2063': {
+                humanBehaveImage: "images/animation/human-behave/loading2.gif"          
+            },
+            '2083': {
+                humanBehaveImage: "images/animation/human-behave/loading3.gif"          
+            },
+
+        };
+
+        const carFeulContent = {
+            '2023': {
+                carFeulImage: "images/animation/human-behave/hube1.png"          
+            },
+            '2043': {
+                carFeulImage: "images/animation/human-behave/hube2.gif"          
+            },
+            '2063': {
+                carFeulImage: "images/animation/human-behave/hube3.gif"          
+            },
+            '2083': {
+                carFeulImage: "images/animation/human-behave/hube4.gif"          
+            },
+
+        };
+
+
+
+        function updateModalContent(year) {
+            const content = contents[year];
+            if (!content) {
+                console.error(`No content found for year ${year}`);
+                return;
+            }
+            const thermometerImage = document.querySelector('.thermometer');
+            thermometerImage.src = content.thermStill;
+            thermometerImage.dataset.still = content.thermStill;
+            thermometerImage.dataset.animate = content.thermAnimate;
+            
+            const oceanTemperatureImage = document.querySelector('.ocean-temperature img');
+            oceanTemperatureImage.src = content.oceanStill;
+            oceanTemperatureImage.dataset.still = content.oceanStill;
+            oceanTemperatureImage.dataset.animate = content.oceanAnimate;
+
+            const animalMigrationImage = document.querySelector('.animal-migration img');
+            animalMigrationImage.src = content.migrationStill;
+            animalMigrationImage.dataset.still = content.migrationStill;
+            animalMigrationImage.dataset.animate = content.migrationAnimate;
+
+            const coralBleachingImage = document.querySelector('.corall-bleaching img');
+            coralBleachingImage.src = content.coralStill;
+            coralBleachingImage.dataset.still = content.coralStill;
+            coralBleachingImage.dataset.animate = content.coralAnimate;
+            
+            const healthImage = document.querySelector('.health img');
+            healthImage.src = content.healthStill;
+            healthImage.dataset.still = content.healthStill;
+            healthImage.dataset.animate = content.healthAnimate;
+
+            const doplinImage = document.querySelector('.dophin-num .count');
+            doplinImage.src = content.dolphinStill;
+            doplinImage.dataset.still = content.dolphinStill;
+            doplinImage.dataset.animate = content.dolphinAnimate;
+
+            const whalesImage = document.querySelector('.whales_num .count');
+            whalesImage.src = content.whalesStill;
+            whalesImage.dataset.still = content.whalesStill;
+            whalesImage.dataset.animate = content.whalesAnimate;
+
+            const dugongImage = document.querySelector('.dugong-num .count');
+            dugongImage.src = content.dugongStill;
+            dugongImage.dataset.still = content.dugongStill;
+            dugongImage.dataset.animate = content.dugongAnimate;
+
+            const clownfishImage = document.querySelector('.clownfish-num .count');
+            clownfishImage.src = content.clownfishStill;
+            clownfishImage.dataset.still = content.clownfishStill;
+            clownfishImage.dataset.animate = content.clownfishAnimate;
+            
+        }
+
+        function updateCarFeul(year) {
+            const carFeulData = carFeulContent[year];
+            if (!carFeulData) {
+                console.error(`No car fule image found for year ${year}`);
+                return;
+            }
+            const carFeulImage = document.querySelector('.info .car');
+            if (year != '2023') {
+              carFeulImage.style.width = '15vw';
+              carFeulImage.style.right = '18%';
+              carFeulImage.style.bottom = '7%';
+            }
+            carFeulImage.src = carFeulData.carFeulImage;
+
+        }
+
+        function updateHumanBehavior(year) {
+            const beforeClickData = beforeClickContent[year];
+            if (!beforeClickData) {
+                console.error(`No human behavior data found for year ${year}`);
+                return;
+            }
+
+            // puring water images update
+            // default image for pouring water
+            const humanBehaveImage = document.querySelector('.pouring .behave');
+            humanBehaveImage.src = "images/animation/TUT-pour.gif";
+            humanBehaveImage.dataset.still = "images/animation/TUT-pour.gif";
+            const paragraphElement = document.querySelector('.pouring h3 p');
+            paragraphElement.innerHTML = "Sea water temperatures are rising, simulate this by pouring hot water into a tank, and you'll soon see the results";
+
+            // after three secs, change to certain year's human behave image
+            setTimeout(() => {
+                humanBehaveImage.src = beforeClickData.humanBehaveImage;
+                humanBehaveImage.dataset.still = beforeClickData.humanBehaveImage;       
+                paragraphElement.innerHTML = 'The earth is now being destroyed…';
+
+            }, 3000);
+        }
+
+        // El Nino button
+        var newButton = document.getElementById("elNino");
+
+        // El Nino button to trigger blow modal
+        newButton.onclick = function() {
+            var hintMask = document.getElementById("hintMask");
+            if (hintMask.classList.contains("hidden")) {
+                hintMask.classList.remove("hidden");
+            } else {
+                hintMask.classList.add("hidden");
+            }
+        }
+
+        function toggleMapGifs() {
+          const items = document.querySelectorAll('.item img');
+
+          items.forEach(img => {
+              const still = img.getAttribute('data-still');
+              const animate = img.getAttribute('data-animate');
+              if (img.src === still) {
+                  document.getElementById('hintMask').classList.remove('hidden');
+              } else {
+                  document.getElementById('hintMask').classList.add('hidden');
+              }
+              if (img.src.endsWith(still)) {
+                  img.src = animate;
+              } else {
+                  img.src = still;
+              }
+          });
+          // 檢查是否需要顯示step10
+          if (!stepsData.includes(step10Data)) {
+              stepsData.splice(9, 0, step10Data);
+              currentStep = 9;
+              showGuide(currentStep);
+          }
+        }
+
+
+        window.onload = function() {
+          localStorage.removeItem('tutorial');
+          localStorage.removeItem('2023GuideShown');
+          if (!localStorage.getItem('tutorial')) {
+              currentStep = 0;
+              showGuide();
+              localStorage.setItem('tutorial', 'true');
+          }
+        }
+
+        const step9Data = {
+            selector: "#step9Element",
+            message: "Explore the impact of the EI Nino on current ocean conditions", 
+        };
+
+        const step10Data = {
+            selector: "#step10Element",
+            message: "Now you can see the impact of the EI Nino. Please close this window to explore 2043", 
+        };
+
+        const step11Data = {
+            selector: "#step11Element",
+            message: "Sea water temperatures are rising, simulate this by pouring hot water into a tank, and you'll soon see the results.", 
+        };
+        
+
+        let currentStep = 0;
+        const stepsData = [
+            {
+                selector: '#step1Element',
+                message: 'This timeline help you predict the future impact of human behavior on the Great Barrier Reef.'
+            },
+            {
+                selector: '#step2Element',
+                message: [
+                    {
+                        text: 'These four icons will help you understand how the Great Barrier Reef has been affected. Please flip your wrist up and down to explore.',
+                        color: 'black'
+                    },
+                    {
+                        text: 'It will show the impact on marine life.',
+                        color: 'blue'
+                    }
+                ],
+                image: '/images/animation/TUT-twist.gif'
+            },
+            {
+                selector: '#step3Element',
+                message: [
+                    {
+                        text: 'It will show the impact on seabirds.',
+                        color: 'blue'
+                    }
+                ],
+            },
+            {
+                selector: '#step4Element',
+                message: [
+                    {
+                        text: 'It will show the impact on fisheries.',
+                        color: 'blue'
+                    }
+                ],
+            }, 
+            {
+                selector: '#step5Element',
+                message: [
+                    {
+                        text: 'It will show the impact on human life.',
+                        color: 'blue'
+                    }
+                ],
+            },
+            {
+                selector: '#step6Element',
+                message: [
+                    {
+                        text: 'Developments in transportation lead to higher and higher temperatures',
+                    }
+                ],
+            },
+            {
+                selector: '#step7Element',
+                message: [
+                    {
+                        text: 'These three bubbles will continuously display current marine environmental variable data.',
+                    }
+                ],
+                
+            },
+            {
+                selector: '#step8Element',
+                message: [
+                    {
+                        text: 'When you open the map, you can see current ocean conditions data.',
+                    }
+                ],
+                
+            },
+        ];
+        
+        function showGuide(startStep = 0) {
+            // console.log('Inside showGuide, before anything:', currentStep, 'startStep:', startStep);
+            if (startStep !== 0) {
+                currentStep = startStep;
+            }
+
+            const tooltip = document.getElementById('guideTooltip');
+            const tooltipContent = tooltip.querySelector('.tooltip-content');
+            const tooltipImageContainer = tooltip.querySelector('.tooltip-image');
+
+            // Hide the ::after pseudo-element for all steps
+            const allSteps = document.querySelectorAll('.guide-step');
+            allSteps.forEach(el => el.classList.remove('show-after'));
+            // console.log(stepsData.length);
+            // console.log(currentStep);
+            if (currentStep < stepsData.length) {
+                const stepData = stepsData[currentStep];
+                const stepElement = document.querySelector(stepData.selector);
+                
+                if (!stepElement) {
+                    console.error(`Element with selector ${stepData.selector} not found!`);
+                    return;
+                }
+
+                const rect = stepElement.getBoundingClientRect();
+
+                tooltip.style.top = `${rect.top + rect.height / 2}px`;
+                tooltip.style.left = `${rect.left + rect.width / 2}px`;
+
+                // Clear previous content
+                tooltipContent.innerHTML = '';
+                // Check if message is a string or an array
+                if (typeof stepData.message === 'string') {
+                    tooltipContent.innerHTML = stepData.message;
+                } else if (Array.isArray(stepData.message)) {
+                    stepData.message.forEach(part => {
+                        const p = document.createElement('p');
+                        p.textContent = part.text;
+                        p.style.color = part.color;
+                        tooltipContent.appendChild(p);
+                    });
+                }
+
+                if (stepData.image) {
+                    const imageElement = document.createElement('img');
+                    imageElement.src = stepData.image;
+                    tooltipImageContainer.innerHTML = '';
+                    tooltipImageContainer.appendChild(imageElement);
+                } else {
+                    tooltipImageContainer.innerHTML = '';
+                }
+                
+                tooltip.style.display = 'block';
+                // Show the ::after pseudo-element of the current step
+                stepElement.classList.add('show-after');
+                currentStep++;
+            } else {
+                hideGuide();
+                currentStep = 0;
+            }
+        }
+
+        //only show in 2023 map
+        function show2023Guide() {
+          if (!localStorage.getItem('2023GuideShown')) {
+              stepsData.splice(8, 0, step9Data); 
+              currentStep = 8;
+              localStorage.setItem('2023GuideShown', 'true');
+              showGuide(currentStep);
+          }
+        }
+
+        //show pouring water tutorial
+        function showPourGuide() {
+        // Check if step10 is already in the stepsData
+        if (!stepsData.includes(step11Data)) {
+            stepsData.push(step11Data);
+            currentStep = stepsData.length - 1;
+            showGuide(currentStep);
+        }
+    }
+
+
+
+        function nextStep() {
+          // console.log('Inside nextStep, before updating:', currentStep);
+          if (currentStep === 10 && stepsData.includes(step9Data)) {
+            const step9Index = stepsData.indexOf(step9Data);
+            stepsData.splice(step9Index, 1); // Remove step 9 after showing it
+          }
+          if (currentStep === 11 && stepsData.includes(step10Data)) {
+              const step10Index = stepsData.indexOf(step10Data);
+              stepsData.splice(step10Index, 1); // Remove step 10 after showing it
+
+          }
+          showGuide();
+        }
+
+        function hideGuide() {
+            const tooltip = document.getElementById('guideTooltip');
+            tooltip.style.display = 'none';
+            currentStep = 0;
+        }
+
+  </script>
+</html>
