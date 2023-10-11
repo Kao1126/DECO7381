@@ -365,7 +365,7 @@
         var socket = new WebSocket('ws://localhost:3000');
         socket.addEventListener('message', (event) => {
               console.log(event.data)
-              if(event.data == 1 && trigger == true){
+              if(event.data > 575 && trigger == true){
                 toggleMapGifs()
                 trigger = false
             }
