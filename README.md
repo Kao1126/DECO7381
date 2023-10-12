@@ -1,4 +1,6 @@
 # Echoes of the Ocean
+Our design "Echos of the Ocean".​​ It is a novel design that utilises IoT, database analytics, and compelling visual design to spotlight human impact on marine ecosystems. This interactive platform is targeted at Australian adolescents and combines data-driven insights with emotive narratives, focusing on the endangered Great Barrier Reef. Through sensor-driven simulations and immersive web experiences, users confront climate change's tangible repercussions. The project aims to invoke individuals' emotional impact to raise their awareness about ocean conservation. 
+
 
 ## Requirement
 ### Hardware
