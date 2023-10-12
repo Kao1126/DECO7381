@@ -25,7 +25,7 @@
 ### Set up Arduino
 Connect PC with Arduino.
 
-![alt text](./readme_img/arduino_img.png)
+![alt text](./readme_img/arduinos_img.png)
 
 
 ### Install Node.js
