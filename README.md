@@ -18,6 +18,8 @@ Our design "Echos of the Ocean".​​ It is a novel design that utilises IoT, d
 
 ## Demo
 
+https://youtu.be/JmaaTGxBwvU?si=9_vdRanxIqHKHucf
+
 [![IMAGE ALT TEXT](./frontend/images/homepage/background.png)](https://youtu.be/JmaaTGxBwvU?si=9_vdRanxIqHKHucf "Echoes of the Ocean")
 
 
