@@ -659,6 +659,10 @@
                     }
                 if (e.key === 'f' || e.keyCode === 70) {
                     proceedNext();
+                } 
+                if(e.key === 'b' && trigger == true) {
+                    toggleMapGifs()
+                    trigger = false
                 }
             });
 
